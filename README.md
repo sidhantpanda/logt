@@ -10,3 +10,5 @@
 - [ ] Add tags to log messages
 - [ ] Prettify console message with CSS
 - [ ] Enable to view history
+- [ ] Deploy to a CDN
+- [ ] Add a `<script>` tag to fetch script in async
