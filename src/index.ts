@@ -26,6 +26,10 @@ class LogT {
     }
   }
 
+  public getLogLevel = (): number => (this.logLevel);
+
+  public getBrand = (): string | null => (this.brand);
+
   public error(message: string, ...parts: any[]) {
     console.error(message, ...parts);
   }
