@@ -1,6 +1,7 @@
-type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
+type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 const LOG_LEVELS = {
+  none: -1,
   error: 0,
   warn: 1,
   info: 2,
@@ -18,7 +19,7 @@ interface ILogItem {
 
 export default class LogT {
   /** Log level, above which logs will be printed to console */
-  private logLevel: number = -1;
+  private logLevel: number = LOG_LEVELS.none;
   /** Label for the log message, if any */
   private readonly brand: string | null = null;
   /** Log history, which haven't yet been printed to console */
@@ -81,11 +82,9 @@ export default class LogT {
         if (LOG_LEVELS[logLevel] != null) {
           this.logLevel = LOG_LEVELS[logLevel];
         }
-      } else { // noinspection SuspiciousTypeOfGuard
-        if (typeof logLevel === 'number') {
-          if (logLevel >= -1 && logLevel <= 5) {
-            this.logLevel = logLevel;
-          }
+      } else if (typeof logLevel === 'number') {
+        if (logLevel >= LOG_LEVELS.none && logLevel <= LOG_LEVELS.silly) {
+          this.logLevel = logLevel;
         }
       }
     }
