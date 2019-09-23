@@ -9,7 +9,7 @@ const LOG_LEVELS = {
   silly: 5
 };
 
-class LogT {
+export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number;
   /** Label for the log message, if any */
@@ -30,27 +30,27 @@ class LogT {
 
   public getBrand = (): string | null => (this.brand);
 
-  public error(message: string, ...parts: any[]) {
+  public error = (message: string, ...parts: any[]) => {
     console.error(message, ...parts);
   }
 
-  public warn(message: string, ...parts: any[]) {
+  public warn = (message: string, ...parts: any[]) => {
     console.warn(message, ...parts);
   }
 
-  public info(message: string, ...parts: any[]) {
+  public info = (message: string, ...parts: any[]) => {
     console.info(message, ...parts);
   }
 
-  public verbose(message: string, ...parts: any[]) {
+  public verbose = (message: string, ...parts: any[]) => {
     console.log(message, ...parts);
   }
 
-  public debug(message: string, ...parts: any[]) {
+  public debug = (message: string, ...parts: any[]) => {
     console.debug(message, ...parts);
   }
 
-  public silly(message: string, ...parts: any[]) {
+  public silly = (message: string, ...parts: any[]) => {
     console.log(message, ...parts);
   }
 }
