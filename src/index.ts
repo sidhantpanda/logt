@@ -36,31 +36,31 @@ export default class LogT {
     }
   }
 
-  public getLogLevel = (): number => (this.logLevel);
+  public getLogLevel = (): number => this.logLevel;
 
-  public getBrand = (): string | null => (this.brand);
+  public getBrand = (): string | null => this.brand;
 
   public error = (message: string, ...parts: any[]) => {
     console.error(message, ...parts);
-  }
+  };
 
   public warn = (message: string, ...parts: any[]) => {
     console.warn(message, ...parts);
-  }
+  };
 
   public info = (message: string, ...parts: any[]) => {
     console.info(message, ...parts);
-  }
+  };
 
   public verbose = (message: string, ...parts: any[]) => {
     console.log(message, ...parts);
-  }
+  };
 
   public debug = (message: string, ...parts: any[]) => {
     console.debug(message, ...parts);
-  }
+  };
 
   public silly = (message: string, ...parts: any[]) => {
     console.log(message, ...parts);
-  }
+  };
 }
