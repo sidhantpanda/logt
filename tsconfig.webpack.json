@@ -1,4 +1,6 @@
 {
   "extends": "./tsconfig",
-  "target": "es5"
+  "compilerOptions": {
+    "target": "es5"
+  }
 }
