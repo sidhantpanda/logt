@@ -2,6 +2,7 @@ import LogT from '../src';
 
 
 test('sets correct numeric value of log level if string is supplied', () => {
+  const noneLogger = new LogT('none');
   const errorLogger = new LogT('error');
   const warnLogger = new LogT('warn');
   const infoLogger = new LogT('info');
@@ -9,6 +10,7 @@ test('sets correct numeric value of log level if string is supplied', () => {
   const debugLogger = new LogT('debug');
   const sillyLogger = new LogT('silly');
 
+  expect(noneLogger.getLogLevel()).toEqual(-1);
   expect(errorLogger.getLogLevel()).toEqual(0);
   expect(warnLogger.getLogLevel()).toEqual(1);
   expect(infoLogger.getLogLevel()).toEqual(2);
@@ -18,6 +20,7 @@ test('sets correct numeric value of log level if string is supplied', () => {
 });
 
 test('sets correct numeric value of log level if number is supplied', () => {
+  const noneLogger = new LogT(-1);
   const errorLogger = new LogT(0);
   const warnLogger = new LogT(1);
   const infoLogger = new LogT(2);
@@ -25,6 +28,7 @@ test('sets correct numeric value of log level if number is supplied', () => {
   const debugLogger = new LogT(4);
   const sillyLogger = new LogT(5);
 
+  expect(noneLogger.getLogLevel()).toEqual(-1);
   expect(errorLogger.getLogLevel()).toEqual(0);
   expect(warnLogger.getLogLevel()).toEqual(1);
   expect(infoLogger.getLogLevel()).toEqual(2);
