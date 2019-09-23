@@ -1,3 +1,5 @@
+import { partition } from './helper';
+
 type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 const LOG_LEVELS = {
@@ -18,7 +20,7 @@ interface ILogItem {
 
 export default class LogT {
   /** Log level, above which logs will be printed to console */
-  private readonly logLevel: number = -1;
+  private logLevel: number = -1;
   /** Label for the log message, if any */
   private readonly brand: string | null = null;
   /** Log history, which haven't yet been printed to console */
@@ -111,5 +113,19 @@ export default class LogT {
 
   public silly = (tag: string, message: any, ...parts: any[]) => {
     this.log(LOG_LEVELS.silly, tag, message, ...parts);
+  };
+
+  public releaseHistory = (logLevel: number) => {
+    const oldLogLevel = this.logLevel;
+    this.logLevel = logLevel;
+
+    const [pass, fail] = partition<ILogItem>(this.history, logItem => logItem.level <= this.logLevel);
+
+    this.history = fail;
+    pass.forEach((logItem: ILogItem) => {
+      this.log(logItem.level, logItem.tag, logItem.message, logItem.parts);
+    });
+
+    this.logLevel = oldLogLevel;
   };
 }
