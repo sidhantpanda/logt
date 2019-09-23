@@ -27,3 +27,4 @@
 - [ ] Enable to view history
 - [ ] Deploy to a CDN
 - [ ] Add a `<script>` tag to fetch script in async
+- [ ] Add linting
