@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/sidhantpanda/logt/issues"
   },
-  "homepage": "https://github.com/sidhantpanda/logt#readme"
+  "homepage": "https://github.com/sidhantpanda/logt#readme",
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  }
 }
