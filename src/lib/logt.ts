@@ -1,5 +1,3 @@
-import { partition } from '../helper';
-
 type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 const LOG_LEVELS = {
@@ -123,10 +121,10 @@ export default class LogT {
     const oldLogLevel = this.logLevel;
     this.logLevel = logLevel;
 
-    const [pass, fail] = partition<ILogItem>(this.history, logItem => logItem.level <= this.logLevel);
+    const currentHistory = this.history;
+    this.history = [];
 
-    this.history = fail;
-    pass.forEach((logItem: ILogItem) => {
+    currentHistory.forEach(logItem => {
       this.log(logItem.level, logItem.tag, logItem.message, logItem.parts);
     });
 
