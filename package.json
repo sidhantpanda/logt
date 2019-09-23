@@ -1,0 +1,28 @@
+{
+  "name": "logt",
+  "version": "1.0.0",
+  "description": "A better console logger for the browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidhantpanda/logt.git"
+  },
+  "keywords": [
+    "log",
+    "logging",
+    "typescript",
+    "color",
+    "colorful",
+    "loglevel",
+    "setlevel"
+  ],
+  "author": "Sidhant Panda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sidhantpanda/logt/issues"
+  },
+  "homepage": "https://github.com/sidhantpanda/logt#readme"
+}
