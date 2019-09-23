@@ -1,4 +1,5 @@
 import LogT from '../src';
+
 const LOG_LEVELS = {
   error: 0,
   warn: 1,
@@ -24,6 +25,21 @@ describe('constructor sets values correctly', () => {
       expect(verboseLogger.getLogLevel()).toEqual(3);
       expect(debugLogger.getLogLevel()).toEqual(4);
       expect(sillyLogger.getLogLevel()).toEqual(5);
+    });
+
+    test('sets default log level of -1 if incorrect value supplied', () => {
+      // @ts-ignore
+      let logger = new LogT(-2);
+      expect(logger.getLogLevel()).toEqual(-1);
+      // @ts-ignore
+      logger = new LogT(10);
+      expect(logger.getLogLevel()).toEqual(-1);
+      // @ts-ignore
+      logger = new LogT('fefefe');
+      expect(logger.getLogLevel()).toEqual(-1);
+      // @ts-ignore
+      logger = new LogT();
+      expect(logger.getLogLevel()).toEqual(-1);
     });
   });
 });
