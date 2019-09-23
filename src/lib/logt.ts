@@ -27,20 +27,7 @@ export default class LogT {
   private history: ILogItem[] = [];
 
   constructor(logLevel: LOG_LEVEL, brand?: string) {
-    // Check if logLevel value was supplied
-    if (logLevel != null) {
-      if (typeof logLevel === 'string') {
-        if (LOG_LEVELS[logLevel] != null) {
-          this.logLevel = LOG_LEVELS[logLevel];
-        }
-      } else { // noinspection SuspiciousTypeOfGuard
-        if (typeof logLevel === 'number') {
-          if (logLevel >= -1 && logLevel <= 5) {
-            this.logLevel = logLevel;
-          }
-        }
-      }
-    }
+    this.setLogLevel(logLevel);
 
     if (brand) {
       this.brand = brand;
@@ -88,6 +75,23 @@ export default class LogT {
   }
 
   public getLogLevel = (): number => this.logLevel;
+
+  public setLogLevel = (logLevel: LOG_LEVEL) => {
+    // Check if logLevel value was supplied
+    if (logLevel != null) {
+      if (typeof logLevel === 'string') {
+        if (LOG_LEVELS[logLevel] != null) {
+          this.logLevel = LOG_LEVELS[logLevel];
+        }
+      } else { // noinspection SuspiciousTypeOfGuard
+        if (typeof logLevel === 'number') {
+          if (logLevel >= -1 && logLevel <= 5) {
+            this.logLevel = logLevel;
+          }
+        }
+      }
+    }
+  };
 
   public getBrand = (): string | null => this.brand;
 
