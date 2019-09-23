@@ -11,6 +11,7 @@ const LOG_LEVELS = {
 
 interface ILogItem {
   level: number;
+  tag: string;
   message: string;
   parts: any[]
 }
@@ -44,39 +45,40 @@ export default class LogT {
     }
   }
 
-  private log(level: number, message: string, ...parts: any[]) {
+  private log(level: number, tag: string, message: any, ...parts: any[]) {
     if (level <= this.logLevel) {
       switch (level) {
         case LOG_LEVELS.error:
-          console.error(message, ...parts);
+          console.error(tag, message, ...parts);
           break;
 
         case LOG_LEVELS.warn:
-          console.warn(message, ...parts);
+          console.warn(tag, message, ...parts);
           break;
 
         case LOG_LEVELS.info:
-          console.info(message, ...parts);
+          console.info(tag, message, ...parts);
           break;
 
         case LOG_LEVELS.verbose:
-          console.log(message, ...parts);
+          console.log(tag, message, ...parts);
           break;
 
         case LOG_LEVELS.debug:
-          console.log(message, ...parts);
+          console.log(tag, message, ...parts);
           break;
 
         case LOG_LEVELS.silly:
-          console.log(message, ...parts);
+          console.log(tag, message, ...parts);
           break;
 
         default:
-          console.log(message, ...parts);
+          console.log(tag, message, ...parts);
       }
     } else {
       this.history.push({
         level,
+        tag,
         message,
         parts
       });
@@ -87,27 +89,27 @@ export default class LogT {
 
   public getBrand = (): string | null => this.brand;
 
-  public error = (message: string, ...parts: any[]) => {
-    this.log(LOG_LEVELS.error, message, ...parts);
+  public error = (tag: string, message: any, ...parts: any[]) => {
+    this.log(LOG_LEVELS.error, tag, message, ...parts);
   };
 
-  public warn = (message: string, ...parts: any[]) => {
-    this.log(LOG_LEVELS.warn, message, ...parts);
+  public warn = (tag: string, message: any, ...parts: any[]) => {
+    this.log(LOG_LEVELS.warn, tag, message, ...parts);
   };
 
-  public info = (message: string, ...parts: any[]) => {
-    this.log(LOG_LEVELS.info, message, ...parts);
+  public info = (tag: string, message: any, ...parts: any[]) => {
+    this.log(LOG_LEVELS.info, tag, message, ...parts);
   };
 
-  public verbose = (message: string, ...parts: any[]) => {
-    this.log(LOG_LEVELS.verbose, message, ...parts);
+  public verbose = (tag: string, message: any, ...parts: any[]) => {
+    this.log(LOG_LEVELS.verbose, tag, message, ...parts);
   };
 
-  public debug = (message: string, ...parts: any[]) => {
-    this.log(LOG_LEVELS.debug, message, ...parts);
+  public debug = (tag: string, message: any, ...parts: any[]) => {
+    this.log(LOG_LEVELS.debug, tag, message, ...parts);
   };
 
-  public silly = (message: string, ...parts: any[]) => {
-    this.log(LOG_LEVELS.silly, message, ...parts);
+  public silly = (tag: string, message: any, ...parts: any[]) => {
+    this.log(LOG_LEVELS.silly, tag, message, ...parts);
   };
 }
