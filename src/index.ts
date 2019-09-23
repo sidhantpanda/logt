@@ -1,4 +1,4 @@
-type LOG_LEVEL = 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
+type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 const LOG_LEVELS = {
   error: 0,
@@ -11,16 +11,26 @@ const LOG_LEVELS = {
 
 export default class LogT {
   /** Log level, above which logs will be printed to console */
-  private logLevel: number;
+  private readonly logLevel: number = -1;
   /** Label for the log message, if any */
-  private brand: string | null = null;
+  private readonly brand: string | null = null;
 
   constructor(logLevel: LOG_LEVEL, brand?: string) {
-    if (typeof logLevel === 'string') {
-      this.logLevel = LOG_LEVELS[logLevel];
-    } else {
-      this.logLevel = logLevel;
+    // Check if logLevel value was supplied
+    if (logLevel != null) {
+      if (typeof logLevel === 'string') {
+        if (LOG_LEVELS[logLevel] != null) {
+          this.logLevel = LOG_LEVELS[logLevel];
+        }
+      } else { // noinspection SuspiciousTypeOfGuard
+        if (typeof logLevel === 'number') {
+          if (logLevel >= -1 && logLevel <= 5) {
+            this.logLevel = logLevel;
+          }
+        }
+      }
     }
+
     if (brand) {
       this.brand = brand;
     }
