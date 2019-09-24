@@ -2,8 +2,8 @@ export declare type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 
 export default class LogT {
     /** Log level, above which logs will be printed to console */
     private logLevel;
-    /** Log history, which haven't yet been printed to console */
-    private history;
+    /** Logs which are hidden - not been printed to console */
+    private hidden;
     constructor(logLevel: LOG_LEVEL);
     private log;
     getLogLevel: () => number;
@@ -14,5 +14,5 @@ export default class LogT {
     verbose: (tag: string, message: any, ...parts: any[]) => void;
     debug: (tag: string, message: any, ...parts: any[]) => void;
     silly: (tag: string, message: any, ...parts: any[]) => void;
-    releaseHistory: (logLevel: number) => void;
+    showHidden: (logLevel: LOG_LEVEL) => void;
 }

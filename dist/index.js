@@ -22,8 +22,8 @@ class LogT {
     constructor(logLevel) {
         /** Log level, above which logs will be printed to console */
         this.logLevel = LOG_LEVELS.none;
-        /** Log history, which haven't yet been printed to console */
-        this.history = [];
+        /** Logs which are hidden - not been printed to console */
+        this.hidden = [];
         this.log = (level, tag, message, ...parts) => {
             if (level <= this.logLevel) {
                 switch (level) {
@@ -57,7 +57,7 @@ class LogT {
                 }
             }
             else {
-                this.history.push({
+                this.hidden.push({
                     level,
                     tag,
                     message,
@@ -99,15 +99,15 @@ class LogT {
         this.silly = (tag, message, ...parts) => {
             this.log(LOG_LEVELS.silly, tag, message, ...parts);
         };
-        this.releaseHistory = (logLevel) => {
+        this.showHidden = (logLevel) => {
             const oldLogLevel = this.logLevel;
-            this.logLevel = logLevel;
-            const currentHistory = this.history;
-            this.history = [];
-            currentHistory.forEach(logItem => {
+            this.setLogLevel(logLevel);
+            const currentHidden = this.hidden;
+            this.hidden = [];
+            currentHidden.forEach(logItem => {
                 this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
             });
-            this.logLevel = oldLogLevel;
+            this.setLogLevel(oldLogLevel);
         };
         this.setLogLevel(logLevel);
     }
