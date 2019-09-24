@@ -2,7 +2,7 @@
   "name": "logt",
   "version": "1.0.0",
   "description": "A better console logger for the browser",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack && tsc",
