@@ -25,7 +25,7 @@
 * Integrates with browser's native `console`.
 * Colorful labels to help distinguish logs by importance.
 * [Log levels](#logger-initialization) to hide less important log messages.
-* [Peek into history](#releasehistoryloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly) to print logs hidden due log level.
+* [Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly) to print logs hidden due log level.
 
 ## Usage
 
@@ -172,9 +172,9 @@ Update a logger instance's logLevel dynamically later.
 ##### Parameters
 * `logLevel` - New logLevel for the instance 
 
-#### `releaseHistory(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
+#### `showHidden(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 
-Release historical logger from the instance which were not printed to the console. Only logs equal or above `logLevel` will be released.
+Show log messages hidden by the logger. Only logs equal or above `logLevel` will be shown.
 ##### Parameters
-* `logLevel` - Log level for which logs are to be printed
+* `logLevel` - Log level for which logs are to be shown
  
