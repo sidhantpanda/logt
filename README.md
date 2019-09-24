@@ -114,59 +114,59 @@ If any other value is supplied to the constructor, a default value of `none` is 
 
 ### APIs
 
-#### 1. error(logTag: string, message: any, ...rest: any[])
+#### `error(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
 * `logTag` - A log tag to identify the message and point to source of the message.
 * `message` - The error log message
 * `...rest` - Any additional arguments to be passed onto `console.error`
 
-#### 2. warn(logTag: string, message: any, ...rest: any[])
+#### `warn(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
 * `logTag` - A log tag to identify the message and point to source of the message.
 * `message` - The warning log message
 * `...rest` - Any additional arguments to be passed onto `console.warn`
 
-#### 3. info(logTag: string, message: any, ...rest: any[])
+#### `info(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
 * `logTag` - A log tag to identify the message and point to source of the message.
 * `message` - The info log message
 * `...rest` - Any additional arguments to be passed onto `console.info`
 
-#### 4. verbose(logTag: string, message: any, ...rest: any[])
+#### `verbose(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
 * `logTag` - A log tag to identify the message and point to source of the message.
 * `message` - The verbose log message
 * `...rest` - Any additional arguments to be passed onto `console.log`
 
-#### 5. debug(logTag: string, message: any, ...rest: any[])
+#### `debug(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
 * `logTag` - A log tag to identify the message and point to source of the message.
 * `message` - The debug log message
 * `...rest` - Any additional arguments to be passed onto `console.log`
 
-#### 6. silly(logTag: string, message: any, ...rest: any[])
+#### `silly(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
 * `logTag` - A log tag to identify the message and point to source of the message.
 * `message` - The silly log message
 * `...rest` - Any additional arguments to be passed onto `console.log`
 
-#### 7. getLogLevel(): number
+#### `getLogLevel(): number`
 
 Returns the logger instance's log level in numeric form;
 
-#### 8. setLogLevel(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')
+#### `setLogLevel(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 
 Update a logger instance's logLevel dynamically later.
 ##### Parameters
 * `logLevel` - New logLevel for the instance 
 
-#### 8. releaseHistory(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')
+#### `releaseHistory(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 
 Release historical logger from the instance which were not printed to the console. Only logs equal or above `logLevel` will be released.
 ##### Parameters
