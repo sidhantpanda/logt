@@ -31,6 +31,12 @@
   <img src="https://media.giphy.com/media/ckNv6K3sRo8dWOUtH7/giphy.gif" />
 </p>
 
+## Installation
+
+```
+$ npm i logt -S
+```
+
 ## Usage
 
 You can use this logger for your frontend projects. You can choose as an ES6 module or directly include the script in HTML.
