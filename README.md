@@ -18,5 +18,5 @@
 🖥️ A colourful logger for the browser
 
 <p align="center">
-  <img src="https://i.imgur.com/Zs6DgM8.png" />
+  <img src="https://i.imgur.com/X2t6Ngu.png" />
 </p>
