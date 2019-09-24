@@ -20,3 +20,28 @@
 <p align="center">
   <img src="https://i.imgur.com/efMwTMd.png" />
 </p>
+
+## Usage
+
+You can use this logger for your frontend projects. You can choose as an ES6 module or directly include the script in HTML.
+
+#### As an ES6 module
+```typescript
+import LogT from 'logt';
+
+const LOG_TAG = 'sample tag';
+const logger = new LogT('error');
+
+logger.error(LOG_TAG, new Error('example error'));
+```
+
+### Include in HTML
+```javascript
+<script src="logt.min.js"></script>
+<script>
+var LOG_TAG = 'sample tag';
+var logger = createLogger('error');
+
+logger.error(LOG_TAG, new Error('example error'));
+</script>
+```
