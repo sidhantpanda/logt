@@ -4,6 +4,7 @@
   "description": "A better console logger for the browser",
   "main": "dist/index.js",
   "scripts": {
+    "lint": "eslint src/index.ts",
     "dev": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack && tsc",
     "test": "jest"
@@ -29,7 +30,12 @@
   "homepage": "https://github.com/sidhantpanda/logt#readme",
   "devDependencies": {
     "@types/jest": "24.0.18",
+    "@typescript-eslint/eslint-plugin": "2.3.1",
+    "@typescript-eslint/parser": "2.3.1",
     "clean-webpack-plugin": "3.0.0",
+    "eslint": "6.4.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.18.2",
     "html-webpack-plugin": "3.2.0",
     "jest": "24.9.0",
     "ts-jest": "24.1.0",
