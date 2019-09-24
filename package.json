@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/index.ts",
+    "docs": "typedoc --mode modules --out docs src/index.ts",
     "dev": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack && tsc --declaration",
     "test": "jest"
@@ -40,6 +41,7 @@
     "jest": "24.9.0",
     "ts-jest": "24.1.0",
     "ts-loader": "6.1.2",
+    "typedoc": "^0.15.0",
     "typescript": "3.6.3",
     "webpack": "4.40.2",
     "webpack-cli": "3.3.9",
