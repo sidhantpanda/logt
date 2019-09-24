@@ -22,25 +22,28 @@
 </p>
 
 ## Features
-* **Colorful labels** to help distinguish logs by importance.
-* **[Log levels](#logger-initialization)** to hide less important log messages.
-* **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
+
+- **Colorful labels** to help distinguish logs by importance.
+- **[Log levels](#logger-initialization)** to hide less important log messages.
+- **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
 
 ## Usage
 
 You can use this logger for your frontend projects. You can choose as an ES6 module or directly include the script in HTML.
 
 #### As an ES6 module
+
 ```typescript
-import LogT from 'logt';
+import LogT from "logt";
 
-const LOG_TAG = 'sample tag';
-const logger = new LogT('error');
+const LOG_TAG = "sample tag";
+const logger = new LogT("error");
 
-logger.error(LOG_TAG, new Error('example error'));
+logger.error(LOG_TAG, new Error("example error"));
 ```
 
 #### Include in HTML
+
 ```javascript
 <script src="logt.min.js"></script>
 <script>
@@ -54,67 +57,69 @@ logger.error(LOG_TAG, new Error('example error'));
 ## Documentation
 
 #### Logger initialization
-```typescript
-import LogT from 'logt';
 
-let noneLogger, errorLogger, warnLogger, infoLogger, verboseLogger, debugLogger, sillyLogger;
+```typescript
+import LogT from "logt";
+
+let noneLogger,
+  errorLogger,
+  warnLogger,
+  infoLogger,
+  verboseLogger,
+  debugLogger,
+  sillyLogger;
 // Available log levels -  -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 // noneLogger will print nothing
 noneLogger = new LogT(-1); // or
-noneLogger = new LogT('none');
+noneLogger = new LogT("none");
 // if included via HTML script
 noneLogger = createLogger(-1); // or
-noneLogger = createLogger('none');
-
+noneLogger = createLogger("none");
 
 // errorLogger will only error messages
 errorLogger = new LogT(0); // or
-errorLogger = new LogT('error');
+errorLogger = new LogT("error");
 // if included via HTML script
 errorLogger = createLogger(0); // or
-errorLogger = createLogger('error');
-
+errorLogger = createLogger("error");
 
 // warnLogger will print errors and warning messages
 warnLogger = new LogT(1); // or
-warnLogger = new LogT('warn');
+warnLogger = new LogT("warn");
 // if included via HTML script
 warnLogger = createLogger(1); // or
-warnLogger = createLogger('warn');
-
+warnLogger = createLogger("warn");
 
 // infoLogger will print errors, warning, and info messages
 infoLogger = new LogT(2); // or
-infoLogger = new LogT('info');
+infoLogger = new LogT("info");
 // if included via HTML script
 infoLogger = createLogger(2); // or
-infoLogger = createLogger('info');
-
+infoLogger = createLogger("info");
 
 // verboseLogger will print errors, warning, info and verbose messages
 verboseLogger = new LogT(3); // or
-verboseLogger = new LogT('verbose');
+verboseLogger = new LogT("verbose");
 // if included via HTML script
 verboseLogger = createLogger(3); // or
-verboseLogger = createLogger('verbose');
-
+verboseLogger = createLogger("verbose");
 
 // debugLogger will print errors, warning, info, verbose and debug messages
 debugLogger = new LogT(4); // or
-debugLogger = new LogT('debug');
+debugLogger = new LogT("debug");
 // if included via HTML script
 debugLogger = createLogger(4); // or
-debugLogger = createLogger('debug');
-
+debugLogger = createLogger("debug");
 
 // sillyLogger will print all messages
 sillyLogger = new LogT(5); // or
-sillyLogger = new LogT('silly');
+sillyLogger = new LogT("silly");
 // if included via HTML script
 sillyLogger = createLogger(5); // or
-sillyLogger = createLogger('silly');
+sillyLogger = createLogger("silly");
 ```
+
 If any other value is supplied to the constructor, a default value of `none` is used.
 
 ### APIs
@@ -122,44 +127,50 @@ If any other value is supplied to the constructor, a default value of `none` is 
 #### `error(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
-* `logTag` - A log tag to identify the message and point to source of the message.
-* `message` - The error log message
-* `...rest` - Any additional arguments to be passed onto `console.error`
+
+- `logTag` - A log tag to identify the message and point to source of the message.
+- `message` - The error log message
+- `...rest` - Any additional arguments to be passed onto `console.error`
 
 #### `warn(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
-* `logTag` - A log tag to identify the message and point to source of the message.
-* `message` - The warning log message
-* `...rest` - Any additional arguments to be passed onto `console.warn`
+
+- `logTag` - A log tag to identify the message and point to source of the message.
+- `message` - The warning log message
+- `...rest` - Any additional arguments to be passed onto `console.warn`
 
 #### `info(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
-* `logTag` - A log tag to identify the message and point to source of the message.
-* `message` - The info log message
-* `...rest` - Any additional arguments to be passed onto `console.info`
+
+- `logTag` - A log tag to identify the message and point to source of the message.
+- `message` - The info log message
+- `...rest` - Any additional arguments to be passed onto `console.info`
 
 #### `verbose(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
-* `logTag` - A log tag to identify the message and point to source of the message.
-* `message` - The verbose log message
-* `...rest` - Any additional arguments to be passed onto `console.log`
+
+- `logTag` - A log tag to identify the message and point to source of the message.
+- `message` - The verbose log message
+- `...rest` - Any additional arguments to be passed onto `console.log`
 
 #### `debug(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
-* `logTag` - A log tag to identify the message and point to source of the message.
-* `message` - The debug log message
-* `...rest` - Any additional arguments to be passed onto `console.log`
+
+- `logTag` - A log tag to identify the message and point to source of the message.
+- `message` - The debug log message
+- `...rest` - Any additional arguments to be passed onto `console.log`
 
 #### `silly(logTag: string, message: any, ...rest: any[])`
 
 ##### Parameters
-* `logTag` - A log tag to identify the message and point to source of the message.
-* `message` - The silly log message
-* `...rest` - Any additional arguments to be passed onto `console.log`
+
+- `logTag` - A log tag to identify the message and point to source of the message.
+- `message` - The silly log message
+- `...rest` - Any additional arguments to be passed onto `console.log`
 
 #### `getLogLevel(): number`
 
@@ -168,12 +179,29 @@ Returns the logger instance's log level in numeric form;
 #### `setLogLevel(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 
 Update a logger instance's logLevel dynamically later.
+
 ##### Parameters
-* `logLevel` - New logLevel for the instance 
+
+- `logLevel` - New logLevel for the instance
 
 #### `showHidden(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 
 Show log messages hidden by the logger. Only logs equal or above `logLevel` will be shown.
+
 ##### Parameters
-* `logLevel` - Log level for which logs are to be shown
- 
+
+- `logLevel` - Log level for which logs are to be shown
+
+##### Example
+```typescript
+const logger = new LogT(0);
+logger.warn('TAG', 'warning message'); // Will not print anything to console
+logger.info('TAG', 'info message'); // Will not print anything to console
+logger.debug('TAG', 'debug message'); // Will not print anything to console
+logger.silly('TAG', 'silly message'); // Will not print anything to console
+
+logger.showHidden(1); // Will print the warning message
+logger.showHidden(2); // Will print the info warning message
+logger.showHidden(5); // Will print the debug as well as silly message
+```
+
