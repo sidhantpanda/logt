@@ -1,7 +1,9 @@
-import LogT from './lib/logt';
+import LogT, { LOG_LEVEL } from './lib/logt';
 
 if (window) {
-  (window as any)['logt'] = LogT;
+  (window as any)['createLogger'] = (logLevel: LOG_LEVEL): LogT => {
+    return new LogT(logLevel);
+  };
 }
 
 export default LogT;
