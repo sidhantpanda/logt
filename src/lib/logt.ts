@@ -14,7 +14,7 @@ interface ILogItem {
   level: number;
   tag: string;
   message: string;
-  parts: any[]
+  parts: any[];
 }
 
 export default class LogT {
@@ -33,7 +33,7 @@ export default class LogT {
     }
   }
 
-  private log(level: number, tag: string, message: any, ...parts: any[]) {
+  private log = (level: number, tag: string, message: any, ...parts: any[]) => {
     if (level <= this.logLevel) {
       switch (level) {
         case LOG_LEVELS.error:
@@ -124,7 +124,11 @@ export default class LogT {
     this.history = [];
 
     currentHistory.forEach(logItem => {
-      this.log(logItem.level, logItem.tag, logItem.message, logItem.parts);
+      if (logItem.parts.length > 0) {
+        this.log(logItem.level, logItem.tag, logItem.message, logItem.parts);
+      } else {
+        this.log(logItem.level, logItem.tag, logItem.message);
+      }
     });
 
     this.logLevel = oldLogLevel;
