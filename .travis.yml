@@ -8,3 +8,6 @@ jobs:
     - stage: 'test'
       name: 'Run test'
       script: npm run test
+    - stage: 'linting'
+      name: 'Check linting'
+      script: npm run lint
