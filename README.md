@@ -13,18 +13,10 @@
   <img src="https://snyk.io//test/github/sidhantpanda/logt/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io//test/github/sidhantpanda/logt?targetFile=package.json" style="max-width:100%;">
 </a>
 
-## 🚧⚠️ Project under development ⚠️🚧
-
 # LogT
 
-🖥️ A better console logger for the browser
+🖥️ A colourful logger for the browser
 
-### Todo:
-
-- [ ] Add webpack dev server
-- [ ] Add tags to log messages
-- [ ] Prettify console message with CSS
-- [ ] Enable to view history
-- [ ] Deploy to a CDN
-- [ ] Add a `<script>` tag to fetch script in async
-- [ ] Add linting
+<p align="center">
+  <img src="https://i.imgur.com/Zs6DgM8.png" />
+</p>

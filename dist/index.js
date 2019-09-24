@@ -7,7 +7,7 @@ const LOG_LEVELS = {
     info: 2,
     verbose: 3,
     debug: 4,
-    silly: 5
+    silly: 5,
 };
 const STYLES = {
     error: 'color: white; background: #db2828; border-radius: 8px',
@@ -28,24 +28,31 @@ class LogT {
             if (level <= this.logLevel) {
                 switch (level) {
                     case LOG_LEVELS.error:
+                        // eslint-disable-next-line no-console
                         console.error(`%c error %c %c ${tag} `, STYLES.error, '', STYLES.tag, message, ...parts);
                         break;
                     case LOG_LEVELS.warn:
+                        // eslint-disable-next-line no-console
                         console.warn(`%c warn %c %c ${tag} `, STYLES.warn, '', STYLES.tag, message, ...parts);
                         break;
                     case LOG_LEVELS.info:
+                        // eslint-disable-next-line no-console
                         console.info(`%c info %c %c ${tag} `, STYLES.info, '', STYLES.tag, message, ...parts);
                         break;
                     case LOG_LEVELS.verbose:
+                        // eslint-disable-next-line no-console
                         console.log(`%c verbose %c %c ${tag} `, STYLES.verbose, '', STYLES.tag, message, ...parts);
                         break;
                     case LOG_LEVELS.debug:
+                        // eslint-disable-next-line no-console
                         console.log(`%c debug %c %c ${tag} `, STYLES.debug, '', STYLES.tag, message, ...parts);
                         break;
                     case LOG_LEVELS.silly:
+                        // eslint-disable-next-line no-console
                         console.log(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
                         break;
                     default:
+                        // eslint-disable-next-line no-console
                         console.log(tag, message, ...parts);
                 }
             }
@@ -54,7 +61,7 @@ class LogT {
                     level,
                     tag,
                     message,
-                    parts
+                    parts,
                 });
             }
         };
