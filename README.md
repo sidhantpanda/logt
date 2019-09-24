@@ -55,7 +55,7 @@ logger.error(LOG_TAG, new Error("example error"));
 #### Include in HTML
 
 ```javascript
-<script src="logt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sidhantpanda/logt/dist/logt.min.js"></script>
 <script>
 var LOG_TAG = 'sample tag';
 var logger = createLogger('error');
