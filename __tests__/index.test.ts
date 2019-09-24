@@ -51,14 +51,3 @@ test('sets default log level of -1 if incorrect value supplied', () => {
   logger = new LogT();
   expect(logger.getLogLevel()).toEqual(-1);
 });
-
-test('sets brand as null if not supplied', () => {
-  const logger = new LogT(0);
-  expect(logger.getBrand()).toBeNull();
-});
-
-test('sets brand correctly if supplied', () => {
-  const brand = 'panda';
-  const logger = new LogT(0, brand);
-  expect(logger.getBrand()).toBe(brand);
-});
