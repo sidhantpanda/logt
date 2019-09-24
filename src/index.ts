@@ -107,7 +107,7 @@ export default class LogT {
 
   /**
    * Set instance log level.
-   * @param logLevel Log level set on instance. 
+   * @param logLevel Log level set on instance.
    * Logs which have levels less than or equal to this value will be printed to console
    */
   public setLogLevel = (logLevel: LOG_LEVEL) => {
