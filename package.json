@@ -1,6 +1,6 @@
 {
   "name": "logt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A better console logger for the browser",
   "main": "dist/index.js",
   "scripts": {
