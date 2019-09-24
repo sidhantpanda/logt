@@ -83,7 +83,7 @@ export default class LogT {
         parts,
       });
     }
-  }
+  };
 
   public getLogLevel = (): number => this.logLevel;
 
@@ -126,9 +126,9 @@ export default class LogT {
     this.log(LOG_LEVELS.silly, tag, message, ...parts);
   };
 
-  public releaseHistory = (logLevel: number) => {
+  public releaseHistory = (logLevel: LOG_LEVEL) => {
     const oldLogLevel = this.logLevel;
-    this.logLevel = logLevel;
+    this.setLogLevel(logLevel);
 
     const currentHistory = this.history;
     this.history = [];
@@ -137,6 +137,6 @@ export default class LogT {
       this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
     });
 
-    this.logLevel = oldLogLevel;
+    this.setLogLevel((oldLogLevel as LOG_LEVEL));
   };
 }
