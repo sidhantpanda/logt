@@ -31,8 +31,8 @@ export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number = LOG_LEVELS.none;
 
-  /** Log history, which haven't yet been printed to console */
-  private history: ILogItem[] = [];
+  /** Logs which are hidden - not been printed to console */
+  private hidden: ILogItem[] = [];
 
   constructor(logLevel: LOG_LEVEL) {
     this.setLogLevel(logLevel);
@@ -76,7 +76,7 @@ export default class LogT {
           console.log(tag, message, ...parts);
       }
     } else {
-      this.history.push({
+      this.hidden.push({
         level,
         tag,
         message,
@@ -126,14 +126,14 @@ export default class LogT {
     this.log(LOG_LEVELS.silly, tag, message, ...parts);
   };
 
-  public releaseHistory = (logLevel: LOG_LEVEL) => {
+  public showHidden = (logLevel: LOG_LEVEL) => {
     const oldLogLevel = this.logLevel;
     this.setLogLevel(logLevel);
 
-    const currentHistory = this.history;
-    this.history = [];
+    const currentHidden = this.hidden;
+    this.hidden = [];
 
-    currentHistory.forEach(logItem => {
+    currentHidden.forEach(logItem => {
       this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
     });
 
