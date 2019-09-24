@@ -218,5 +218,6 @@ logger.showHidden(5); // Will print the debug as well as silly message
 
 ## Roadmap
 
-- [ ] Improve documentation - APIs, arguments, examples
+- [x] Improve documentation - APIs, arguments, examples
+- [ ] Improve code coverage
 - [ ] Add API to update log message style programmatically
