@@ -15,11 +15,17 @@
 
 # LogT
 
-🖥️ A colourful logger for the browser
+🖥️ A colorful logger for the browser
 
 <p align="center">
   <img src="https://i.imgur.com/efMwTMd.png" />
 </p>
+
+## Features
+* Integrates with browser's native `console`.
+* Colorful labels to help distinguish logs by importance.
+* [Log levels](#logger-initialization) to hide less important log messages.
+* [Peek into history](#releasehistoryloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly) to print logs hidden due log level.
 
 ## Usage
 
