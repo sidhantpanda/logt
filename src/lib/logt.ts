@@ -20,17 +20,11 @@ interface ILogItem {
 export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number = LOG_LEVELS.none;
-  /** Label for the log message, if any */
-  private readonly brand: string | null = null;
   /** Log history, which haven't yet been printed to console */
   private history: ILogItem[] = [];
 
   constructor(logLevel: LOG_LEVEL, brand?: string) {
     this.setLogLevel(logLevel);
-
-    if (brand) {
-      this.brand = brand;
-    }
   }
 
   private log = (level: number, tag: string, message: any, ...parts: any[]) => {
@@ -89,8 +83,6 @@ export default class LogT {
       }
     }
   };
-
-  public getBrand = (): string | null => this.brand;
 
   public error = (tag: string, message: any, ...parts: any[]) => {
     this.log(LOG_LEVELS.error, tag, message, ...parts);
