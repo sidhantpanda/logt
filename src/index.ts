@@ -46,7 +46,8 @@ export default class LogT {
   }
 
   /**
-   * Internal log method which prints valid logs to console and add a higher level log to {LogT.hidden}
+   * Internal log method which prints valid logs
+   * to console and add a higher level log to {LogT.hidden}
    * @param level Level of the log message
    * @param tag Tag for log
    * @param message Log message
@@ -106,7 +107,8 @@ export default class LogT {
 
   /**
    * Set instance log level.
-   * @param logLevel Log level set on instance. Logs which have levels less than or equal to this value will be printed to console
+   * @param logLevel Log level set on instance. 
+   * Logs which have levels less than or equal to this value will be printed to console
    */
   public setLogLevel = (logLevel: LOG_LEVEL) => {
     // Check if logLevel value was supplied
