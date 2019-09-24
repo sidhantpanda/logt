@@ -1,11 +1,10 @@
 <!-- Dependency Status -->
-<a href="https://david-dm.org/sidhantpanda/logt">
-  <img src="https://david-dm.org/sidhantpanda/logt.svg" alt="Dependency Status" />
+<a href="https://www.npmjs.com/package/logt">
+  <img src="https://badge.fury.io/js/logt.svg" alt="npm version" />
 </a>
+<img src="https://david-dm.org/sidhantpanda/logt.svg" alt="Dependency Status" />
 <!-- devDependency Status -->
-<a href="https://david-dm.org/sidhantpanda/logt#info=devDependencies">
-  <img src="https://david-dm.org/sidhantpanda/logt/dev-status.svg" alt="devDependency Status" />
-</a>
+<img src="https://david-dm.org/sidhantpanda/logt/dev-status.svg" alt="devDependency Status" />
 <a href="https://travis-ci.org/sidhantpanda/logt">
   <img src="https://travis-ci.org/sidhantpanda/logt.svg?branch=master" alt="Build Status" />
 </a>
@@ -22,14 +21,15 @@
 </p>
 
 ## Features
+
 - **Small library size** - Only ~1.3KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
 - **Built with TypeScript** for detailed type info and that sweet sweet autocomplete.
-<p align="center">
-  <img src="https://media.giphy.com/media/ckNv6K3sRo8dWOUtH7/giphy.gif" />
-</p>
+  <p align="center">
+    <img src="https://media.giphy.com/media/ckNv6K3sRo8dWOUtH7/giphy.gif" />
+  </p>
 
 ## Installation
 
@@ -203,12 +203,13 @@ Show log messages hidden by the logger. Only logs equal or above `logLevel` will
 - `logLevel` - Log level for which logs are to be shown
 
 ##### Example
+
 ```typescript
 const logger = new LogT(0);
-logger.warn('TAG', 'warning message'); // Will not print anything to console
-logger.info('TAG', 'info message'); // Will not print anything to console
-logger.debug('TAG', 'debug message'); // Will not print anything to console
-logger.silly('TAG', 'silly message'); // Will not print anything to console
+logger.warn("TAG", "warning message"); // Will not print anything to console
+logger.info("TAG", "info message"); // Will not print anything to console
+logger.debug("TAG", "debug message"); // Will not print anything to console
+logger.silly("TAG", "silly message"); // Will not print anything to console
 
 logger.showHidden(1); // Will print the warning message
 logger.showHidden(2); // Will print the info warning message
@@ -219,5 +220,3 @@ logger.showHidden(5); // Will print the debug as well as silly message
 
 - [ ] Improve documentation - APIs, arguments, examples
 - [ ] Add API to update log message style programmatically
-
-
