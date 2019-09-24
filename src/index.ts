@@ -7,7 +7,7 @@ const LOG_LEVELS = {
   info: 2,
   verbose: 3,
   debug: 4,
-  silly: 5
+  silly: 5,
 };
 
 const STYLES = {
@@ -30,6 +30,7 @@ interface ILogItem {
 export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number = LOG_LEVELS.none;
+
   /** Log history, which haven't yet been printed to console */
   private history: ILogItem[] = [];
 
@@ -41,30 +42,37 @@ export default class LogT {
     if (level <= this.logLevel) {
       switch (level) {
         case LOG_LEVELS.error:
+          // eslint-disable-next-line no-console
           console.error(`%c error %c %c ${tag} `, STYLES.error, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.warn:
+          // eslint-disable-next-line no-console
           console.warn(`%c warn %c %c ${tag} `, STYLES.warn, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.info:
+          // eslint-disable-next-line no-console
           console.info(`%c info %c %c ${tag} `, STYLES.info, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.verbose:
+          // eslint-disable-next-line no-console
           console.log(`%c verbose %c %c ${tag} `, STYLES.verbose, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.debug:
+          // eslint-disable-next-line no-console
           console.log(`%c debug %c %c ${tag} `, STYLES.debug, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.silly:
+          // eslint-disable-next-line no-console
           console.log(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
           break;
 
         default:
+          // eslint-disable-next-line no-console
           console.log(tag, message, ...parts);
       }
     } else {
@@ -72,7 +80,7 @@ export default class LogT {
         level,
         tag,
         message,
-        parts
+        parts,
       });
     }
   }
