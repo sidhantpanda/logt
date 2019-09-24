@@ -59,6 +59,8 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/web.ts",
+    "src/examples.ts"
   ]
 }
