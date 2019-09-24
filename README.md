@@ -35,7 +35,7 @@ const logger = new LogT('error');
 logger.error(LOG_TAG, new Error('example error'));
 ```
 
-### Include in HTML
+#### Include in HTML
 ```javascript
 <script src="logt.min.js"></script>
 <script>
@@ -44,4 +44,77 @@ var logger = createLogger('error');
 
 logger.error(LOG_TAG, new Error('example error'));
 </script>
+```
+
+## Documentation
+
+#### Logger initialization
+```typescript
+import LogT from 'logt';
+
+let noneLogger, errorLogger, warnLogger, infoLogger, verboseLogger, debugLogger, sillyLogger;
+// Available log levels -  -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
+
+// noneLogger will print nothing
+noneLogger = new LogT(-1); // or
+noneLogger = new LogT('none');
+
+// if included via HTML script
+noneLogger = createLogger(-1); // or
+noneLogger = createLogger('none');
+
+
+// errorLogger will only error messages
+errorLogger = new LogT(0); // or
+errorLogger = new LogT('error');
+
+// if included via HTML script
+errorLogger = createLogger(0); // or
+errorLogger = createLogger('error');
+
+
+// warnLogger will print errors and warning messages
+warnLogger = new LogT(1); // or
+warnLogger = new LogT('warn');
+
+// if included via HTML script
+warnLogger = createLogger(1); // or
+warnLogger = createLogger('warn');
+
+
+// infoLogger will print errors, warning, and info messages
+infoLogger = new LogT(2); // or
+infoLogger = new LogT('info');
+
+// if included via HTML script
+infoLogger = createLogger(2); // or
+infoLogger = createLogger('info');
+
+
+// verboseLogger will print errors, warning, info and verbose messages
+verboseLogger = new LogT(3); // or
+verboseLogger = new LogT('verbose');
+
+// if included via HTML script
+verboseLogger = createLogger(3); // or
+verboseLogger = createLogger('verbose');
+
+
+// debugLogger will print errors, warning, info, verbose and debug messages
+debugLogger = new LogT(4); // or
+debugLogger = new LogT('debug');
+
+// if included via HTML script
+debugLogger = createLogger(4); // or
+debugLogger = createLogger('debug');
+
+
+// sillyLogger will print all messages
+sillyLogger = new LogT(5); // or
+sillyLogger = new LogT('silly');
+
+// if included via HTML script
+sillyLogger = createLogger(5); // or
+sillyLogger = createLogger('silly');
+
 ```
