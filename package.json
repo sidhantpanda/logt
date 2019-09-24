@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src/index.ts",
     "dev": "webpack-dev-server --config webpack.dev.js --open",
-    "build": "webpack && tsc",
+    "build": "webpack && tsc --declaration",
     "test": "jest"
   },
   "repository": {
