@@ -44,13 +44,27 @@ You can use this logger for your frontend projects. You can choose as an ES6 mod
 
 #### As an ES6 module
 
+Create a file in your project called `logger.js` or `logger.ts`
+
 ```typescript
 import LogT from "logt";
 
 const LOG_TAG = "sample tag";
-const logger = new LogT("error");
+let logger;
+if (process.env.NODE_ENV === "production") {
+  logger = new LogT("error"); // or logger = new LogT("none");
+} else {
+  logger = new LogT("silly");
+}
+
+// See documentation for `readConsole()` for usage
+// uncomment following line if you want to override default console methods
+// logger.readConsole();
 
 logger.error(LOG_TAG, new Error("example error"));
+
+export default logger;
+
 ```
 
 #### Include in HTML
@@ -58,10 +72,14 @@ logger.error(LOG_TAG, new Error("example error"));
 ```javascript
 <script src="https://cdn.jsdelivr.net/gh/sidhantpanda/logt/dist/logt.min.js"></script>
 <script>
-var LOG_TAG = 'sample tag';
-var logger = createLogger('error');
+  var LOG_TAG = 'sample tag';
+  var logger = createLogger('error');
 
-logger.error(LOG_TAG, new Error('example error'));
+  // See documentation for `readConsole()` for usage
+  // uncomment following line if you want to override default console methods
+  // logger.readConsole();
+
+  logger.error(LOG_TAG, new Error('example error'));
 </script>
 ```
 
@@ -227,16 +245,17 @@ Replace default `console.error`, `console.warn`, `console.info`, `console.log` i
 const logger = new LogT(0);
 logger.readConsole();
 
-console.error(new Error('test error')); // will be same as logger.error('console', new Error('test error'));
-console.warn('warn message'); // will be same as logger.warn('console', 'warn message');
-console.log('info message'); // will be same as logger.info('console', 'info message');
-console.log('log message'); // will be same as logger.debug('console', 'log message');
+console.error(new Error("test error")); // will be same as logger.error('console', new Error('test error'));
+console.warn("warn message"); // will be same as logger.warn('console', 'warn message');
+console.log("info message"); // will be same as logger.info('console', 'info message');
+console.log("log message"); // will be same as logger.debug('console', 'log message');
 ```
 
 ## Changelog
 
 ### v1.2.0
-* [Added `readConsole()` method](#readconsole)
+
+- [Added `readConsole()` method](#readconsole)
 
 ## Roadmap
 
