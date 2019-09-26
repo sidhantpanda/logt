@@ -1,10 +1,12 @@
-<!-- Dependency Status -->
 <a href="https://www.npmjs.com/package/logt">
   <img src="https://badge.fury.io/js/logt.svg" alt="npm version" />
 </a>
-<img src="https://david-dm.org/sidhantpanda/logt.svg" alt="Dependency Status" />
-<!-- devDependency Status -->
-<img src="https://david-dm.org/sidhantpanda/logt/dev-status.svg" alt="devDependency Status" />
+<a href="https://david-dm.org/sidhantpanda/logt">
+  <img src="https://david-dm.org/sidhantpanda/logt.svg" alt="Dependency Status" />
+</a>
+<a href="https://david-dm.org/sidhantpanda/logt#info=devDependencies">
+  <img src="https://david-dm.org/sidhantpanda/logt/dev-status.svg" alt="devDependency Status" />
+</a>
 <a href="https://travis-ci.org/sidhantpanda/logt">
   <img src="https://travis-ci.org/sidhantpanda/logt.svg?branch=master" alt="Build Status" />
 </a>
