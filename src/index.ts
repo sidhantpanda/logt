@@ -230,6 +230,9 @@ export default class LogT {
     this.setLogLevel((oldLogLevel as LOG_LEVEL));
   };
 
+  /**
+   * Method to override `window.console` methods
+   */
   public readConsole = () => {
     const TAG = 'console';
     console.error = (message?: any, ...parts: any[]) => {
