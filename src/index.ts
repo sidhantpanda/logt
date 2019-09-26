@@ -23,13 +23,22 @@ const STYLES = {
   tag: 'color: black; background: #5bfff4; border-radius: 8px',
 };
 
+/**
+ * Log item interface
+ * This is the data structure for hidden logs
+ */
 interface ILogItem {
+  /** Log level of message */
   level: number;
+  /** Log tag for the message */
   tag: string;
+  /** Log message */
   message: string;
+  /** Additional arguments passed on to `console` methods */
   parts: any[];
 }
 
+/** Logger Class */
 export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number = LOG_LEVELS.none;
