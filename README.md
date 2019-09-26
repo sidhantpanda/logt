@@ -24,7 +24,7 @@
 
 - **Small library size** - Only ~1.3KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
-- **[Override default console methods]()** to use custom logger instead, anywhere on the web page
+- **[Override default console methods](#readconsole)** to use custom logger instead, anywhere on the web page
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
 - **Built with TypeScript** for detailed type info and that sweet sweet autocomplete.
@@ -236,7 +236,7 @@ console.log('log message'); // will be same as logger.debug('console', 'log mess
 ## Changelog
 
 ### v1.2.0
-* Added `readConsole()` method
+* [Added `readConsole()` method](#readconsole)
 
 ## Roadmap
 
