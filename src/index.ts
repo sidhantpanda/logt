@@ -39,7 +39,7 @@ interface ILogItem {
 }
 
 /**
- * Console method interface 
+ * Console method interface
  */
 interface IConsoleMethod {
   /**
@@ -59,15 +59,19 @@ export default class LogT {
   private hidden: ILogItem[] = [];
 
   /** Original `console.error` method */
+  // eslint-disable-next-line no-console
   private originalError: IConsoleMethod = console.error;
 
   /** Original `console.warn` method */
+  // eslint-disable-next-line no-console
   private originalWarn: IConsoleMethod = console.warn;
 
   /** Original `console.info` method */
+  // eslint-disable-next-line no-console
   private originalInfo: IConsoleMethod = console.info;
 
   /** Original `console.log` method */
+  // eslint-disable-next-line no-console
   private originalLog: IConsoleMethod = console.log;
 
   /**
@@ -235,18 +239,22 @@ export default class LogT {
    */
   public readConsole = () => {
     const TAG = 'console';
+    // eslint-disable-next-line no-console
     console.error = (message?: any, ...parts: any[]) => {
       this.log(LOG_LEVELS.error, TAG, message, ...parts);
     };
 
+    // eslint-disable-next-line no-console
     console.warn = (message?: any, ...parts: any[]) => {
       this.log(LOG_LEVELS.warn, TAG, message, ...parts);
     };
 
+    // eslint-disable-next-line no-console
     console.info = (message?: any, ...parts: any[]) => {
       this.log(LOG_LEVELS.info, TAG, message, ...parts);
     };
 
+    // eslint-disable-next-line no-console
     console.log = (message?: any, ...parts: any[]) => {
       this.log(LOG_LEVELS.debug, TAG, message, ...parts);
     };
