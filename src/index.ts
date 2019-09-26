@@ -38,6 +38,18 @@ interface ILogItem {
   parts: any[];
 }
 
+/**
+ * Console method interface 
+ */
+interface IConsoleMethod {
+  /**
+   * Print messages to console
+   * @param message Log message
+   * @param optionalParams Additional arguments to be printed
+   */
+  (message?: any, ...optionalParams: any[]): void
+}
+
 /** Logger Class */
 export default class LogT {
   /** Log level, above which logs will be printed to console */
@@ -47,16 +59,16 @@ export default class LogT {
   private hidden: ILogItem[] = [];
 
   /** Original `console.error` method */
-  private originalError: Function = console.error;
+  private originalError: IConsoleMethod = console.error;
 
   /** Original `console.warn` method */
-  private originalWarn: Function = console.warn;
+  private originalWarn: IConsoleMethod = console.warn;
 
   /** Original `console.info` method */
-  private originalInfo: Function = console.info;
+  private originalInfo: IConsoleMethod = console.info;
 
   /** Original `console.log` method */
-  private originalLog: Function = console.log;
+  private originalLog: IConsoleMethod = console.log;
 
   /**
    * Create a LogT instance
