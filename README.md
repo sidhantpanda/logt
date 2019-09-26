@@ -24,6 +24,7 @@
 
 - **Small library size** - Only ~1.3KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
+- **[Override default console methods]()** to use custom logger instead, anywhere on the web page
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
 - **Built with TypeScript** for detailed type info and that sweet sweet autocomplete.
@@ -212,9 +213,30 @@ logger.debug("TAG", "debug message"); // Will not print anything to console
 logger.silly("TAG", "silly message"); // Will not print anything to console
 
 logger.showHidden(1); // Will print the warning message
-logger.showHidden(2); // Will print the info warning message
+logger.showHidden(2); // Will print the info message
 logger.showHidden(5); // Will print the debug as well as silly message
 ```
+
+#### `readConsole()`
+
+Replace default `console.error`, `console.warn`, `console.info`, `console.log` implementation with `logt` logger.
+
+##### Example
+
+```typescript
+const logger = new LogT(0);
+logger.readConsole();
+
+console.error(new Error('test error')); // will be same as logger.error('console', new Error('test error'));
+console.warn('warn message'); // will be same as logger.warn('console', 'warn message');
+console.log('info message'); // will be same as logger.info('console', 'info message');
+console.log('log message'); // will be same as logger.debug('console', 'log message');
+```
+
+## Changelog
+
+### v1.2.0
+* Added `readConsole()` method
 
 ## Roadmap
 
