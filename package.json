@@ -1,7 +1,7 @@
 {
   "name": "logt",
-  "version": "1.1.0",
-  "description": "A better console logger for the browser",
+  "version": "1.2.0",
+  "description": "🖥️ A colourful logger for the browser",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/index.ts",
