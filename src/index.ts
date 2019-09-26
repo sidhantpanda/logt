@@ -23,19 +23,56 @@ const STYLES = {
   tag: 'color: black; background: #5bfff4; border-radius: 8px',
 };
 
+/**
+ * Log item interface
+ * This is the data structure for hidden logs
+ */
 interface ILogItem {
+  /** Log level of message */
   level: number;
+  /** Log tag for the message */
   tag: string;
+  /** Log message */
   message: string;
+  /** Additional arguments passed on to `console` methods */
   parts: any[];
 }
 
+/**
+ * Console method interface
+ */
+interface IConsoleMethod {
+  /**
+   * Print messages to console
+   * @param message Log message
+   * @param optionalParams Additional arguments to be printed
+   */
+  (message?: any, ...optionalParams: any[]): void
+}
+
+/** Logger Class */
 export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number = LOG_LEVELS.none;
 
   /** Logs which are hidden - not been printed to console */
   private hidden: ILogItem[] = [];
+
+  /** Original `console.error` method */
+  // eslint-disable-next-line no-console
+  private originalError: IConsoleMethod = console.error;
+
+  /** Original `console.warn` method */
+  // eslint-disable-next-line no-console
+  private originalWarn: IConsoleMethod = console.warn;
+
+  /** Original `console.info` method */
+  // eslint-disable-next-line no-console
+  private originalInfo: IConsoleMethod = console.info;
+
+  /** Original `console.log` method */
+  // eslint-disable-next-line no-console
+  private originalLog: IConsoleMethod = console.log;
 
   /**
    * Create a LogT instance
@@ -57,38 +94,32 @@ export default class LogT {
     if (level <= this.logLevel) {
       switch (level) {
         case LOG_LEVELS.error:
-          // eslint-disable-next-line no-console
-          console.error(`%c error %c %c ${tag} `, STYLES.error, '', STYLES.tag, message, ...parts);
+          this.originalError(`%c error %c %c ${tag} `, STYLES.error, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.warn:
-          // eslint-disable-next-line no-console
-          console.warn(`%c warn %c %c ${tag} `, STYLES.warn, '', STYLES.tag, message, ...parts);
+          this.originalWarn(`%c warn %c %c ${tag} `, STYLES.warn, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.info:
-          // eslint-disable-next-line no-console
-          console.info(`%c info %c %c ${tag} `, STYLES.info, '', STYLES.tag, message, ...parts);
+          this.originalInfo(`%c info %c %c ${tag} `, STYLES.info, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.verbose:
-          // eslint-disable-next-line no-console
-          console.log(`%c verbose %c %c ${tag} `, STYLES.verbose, '', STYLES.tag, message, ...parts);
+          this.originalLog(`%c verbose %c %c ${tag} `, STYLES.verbose, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.debug:
-          // eslint-disable-next-line no-console
-          console.log(`%c debug %c %c ${tag} `, STYLES.debug, '', STYLES.tag, message, ...parts);
+          this.originalLog(`%c debug %c %c ${tag} `, STYLES.debug, '', STYLES.tag, message, ...parts);
           break;
 
         case LOG_LEVELS.silly:
-          // eslint-disable-next-line no-console
-          console.log(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
+          this.originalLog(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
           break;
 
         default:
           // eslint-disable-next-line no-console
-          console.log(tag, message, ...parts);
+          this.originalLog(tag, message, ...parts);
       }
     } else {
       this.hidden.push({
@@ -201,5 +232,31 @@ export default class LogT {
     });
 
     this.setLogLevel((oldLogLevel as LOG_LEVEL));
+  };
+
+  /**
+   * Method to override `window.console` methods
+   */
+  public readConsole = () => {
+    const TAG = 'console';
+    // eslint-disable-next-line no-console
+    console.error = (message?: any, ...parts: any[]) => {
+      this.log(LOG_LEVELS.error, TAG, message, ...parts);
+    };
+
+    // eslint-disable-next-line no-console
+    console.warn = (message?: any, ...parts: any[]) => {
+      this.log(LOG_LEVELS.warn, TAG, message, ...parts);
+    };
+
+    // eslint-disable-next-line no-console
+    console.info = (message?: any, ...parts: any[]) => {
+      this.log(LOG_LEVELS.info, TAG, message, ...parts);
+    };
+
+    // eslint-disable-next-line no-console
+    console.log = (message?: any, ...parts: any[]) => {
+      this.log(LOG_LEVELS.debug, TAG, message, ...parts);
+    };
   };
 }
