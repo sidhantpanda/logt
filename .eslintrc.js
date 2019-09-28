@@ -3,18 +3,19 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: ["airbnb-base"],
+  extends: ['airbnb-base'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ['@typescript-eslint'],
   rules: {
-    "arrow-parens": [2, "as-needed"]
+    'arrow-parens': [2, 'as-needed'],
+    'comma-dangle': [2, 'never']
   }
 };
