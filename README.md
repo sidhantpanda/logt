@@ -261,6 +261,4 @@ console.log("log message"); // will be same as logger.debug('console', 'log mess
 
 ## Roadmap
 
-- [x] Improve documentation - APIs, arguments, examples
-- [ ] Improve code coverage
-- [ ] Add API to update log message style programmatically
+Checkout the [project page](https://github.com/sidhantpanda/logt/projects/1) for details about future development.
