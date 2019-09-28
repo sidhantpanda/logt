@@ -50,7 +50,12 @@ interface IConsoleMethod {
   (message?: any, ...optionalParams: any[]): void
 }
 
-/** Logger Class */
+/**
+ * Logger Class Implementation
+ * @author Sidhant Panda
+ *
+ * Email: sidhant@panda.fyi
+ */
 export default class LogT {
   /** Log level, above which logs will be printed to console */
   private logLevel: number = LOG_LEVELS.none;
