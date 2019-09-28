@@ -20,7 +20,12 @@ const STYLES = {
     silly: 'color: white; background: #21ba45; border-radius: 8px',
     tag: 'color: black; background: #5bfff4; border-radius: 8px',
 };
-/** Logger Class */
+/**
+ * Logger Class Implementation
+ * @author Sidhant Panda
+ *
+ * Email: sidhant@panda.fyi
+ */
 class LogT {
     /**
      * Create a LogT instance

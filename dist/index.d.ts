@@ -1,6 +1,11 @@
 /** Valid logLevel values */
 export declare type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
-/** Logger Class */
+/**
+ * Logger Class Implementation
+ * @author Sidhant Panda
+ *
+ * Email: sidhant@panda.fyi
+ */
 export default class LogT {
     /** Log level, above which logs will be printed to console */
     private logLevel;
