@@ -5,5 +5,3 @@ if (window) {
     return new LogT(logLevel);
   };
 }
-
-export default LogT;
