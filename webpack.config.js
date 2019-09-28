@@ -1,10 +1,10 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: "production",
-  entry: "./src/web.ts",
+  mode: 'production',
+  entry: './src/web.ts',
   module: {
     rules: [
       {
@@ -12,27 +12,26 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
-              configFile: "tsconfig.webpack.json"
+              configFile: 'tsconfig.webpack.json'
             }
           }
-        ],
-        exclude: /node_modules/
+        ]
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "LogT - A logging library"
+      title: 'LogT - A logging library'
     })
   ],
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    filename: "logt.min.js",
-    path: path.resolve(__dirname, "dist")
+    filename: 'logt.min.js',
+    path: path.resolve(__dirname, 'dist')
   }
 };
