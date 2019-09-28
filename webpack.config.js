@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const package = require('./package.json');
 
 module.exports = {
   mode: 'production',
@@ -27,7 +28,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'LogT - A logging library'
     }),
-    new webpack.BannerPlugin('Sidhant Panda\nhttps://panda.fyi\n')
+    new webpack.BannerPlugin(
+      `logt v${package.version}\nSidhant Panda\nhttps://bit.ly/2njty0V\n`
+    )
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
