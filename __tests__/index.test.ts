@@ -294,4 +294,27 @@ describe('LogT implementation', () => {
     spy.info.mockClear();
     spy.log.mockClear();
   });
+
+  test('`readConsole` method overrides default console methods', () => {
+    const logger = new LogT(5);
+    
+    const errorSpy = jest.spyOn(logger, 'error').mockImplementation(() => { });
+    const warnSpy = jest.spyOn(logger, 'warn').mockImplementation(() => { });
+    const infoSpy = jest.spyOn(logger, 'info').mockImplementation(() => { });
+    const logSpy = jest.spyOn(logger, 'debug').mockImplementation(() => { });
+
+    logger.readConsole();
+
+    console.error('test error');
+    expect(errorSpy).toHaveBeenCalled();
+    
+    console.warn('test warn');
+    expect(warnSpy).toHaveBeenCalled();
+    
+    console.info('test info');
+    expect(infoSpy).toHaveBeenCalled();
+    
+    console.log('test log');
+    expect(logSpy).toHaveBeenCalled();
+  });
 });
