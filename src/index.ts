@@ -121,6 +121,8 @@ export default class LogT {
         case LOG_LEVELS.silly:
           this.originalLog(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
           break;
+
+        // skip default case
       }
     } else {
       this.hidden.push({
