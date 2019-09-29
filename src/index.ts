@@ -121,10 +121,6 @@ export default class LogT {
         case LOG_LEVELS.silly:
           this.originalLog(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
           break;
-
-        default:
-          // eslint-disable-next-line no-console
-          this.originalLog(tag, message, ...parts);
       }
     } else {
       this.hidden.push({
