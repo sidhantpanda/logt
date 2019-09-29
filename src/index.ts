@@ -151,7 +151,8 @@ export default class LogT {
         if (LOG_LEVELS[logLevel] != null) {
           this.logLevel = LOG_LEVELS[logLevel];
         }
-      } else if (typeof logLevel === 'number') {
+      }
+      if (typeof logLevel === 'number') {
         if (logLevel >= LOG_LEVELS.none && logLevel <= LOG_LEVELS.silly) {
           this.logLevel = logLevel;
         }
