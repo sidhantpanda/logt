@@ -3,6 +3,8 @@ node_js:
   - 8
   - 10
   - 12
+install:
+  - npm install -g codecov
 jobs:
   include:
     - stage: 'test'
@@ -11,3 +13,6 @@ jobs:
     - stage: 'linting'
       name: 'Check linting'
       script: npm run lint
+    - stage: 'Generate coverage report'
+      name: 'Checking coverage'
+      script: codecov
