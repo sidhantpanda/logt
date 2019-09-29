@@ -16,4 +16,4 @@ jobs:
       script: npm run lint
     - stage: 'Generate coverage report'
       name: 'Checking coverage'
-      script: codecov
+      script: npm run test && codecov
