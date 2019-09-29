@@ -244,22 +244,22 @@ export default class LogT {
     const TAG = 'console';
     // eslint-disable-next-line no-console
     console.error = (message?: any, ...parts: any[]) => {
-      this.log(LOG_LEVELS.error, TAG, message, ...parts);
+      this.error(TAG, message, ...parts);
     };
 
     // eslint-disable-next-line no-console
     console.warn = (message?: any, ...parts: any[]) => {
-      this.log(LOG_LEVELS.warn, TAG, message, ...parts);
+      this.warn(TAG, message, ...parts);
     };
 
     // eslint-disable-next-line no-console
     console.info = (message?: any, ...parts: any[]) => {
-      this.log(LOG_LEVELS.info, TAG, message, ...parts);
+      this.info(TAG, message, ...parts);
     };
 
     // eslint-disable-next-line no-console
     console.log = (message?: any, ...parts: any[]) => {
-      this.log(LOG_LEVELS.debug, TAG, message, ...parts);
+      this.debug(TAG, message, ...parts);
     };
   };
 }
