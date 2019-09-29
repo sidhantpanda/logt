@@ -240,4 +240,58 @@ describe('LogT implementation', () => {
     expect(spy.log).not.toHaveBeenCalled();
     spy.log.mockClear();
   });
+
+  test('`showHidden` calls console methods for hidden logs', () => {
+    const message = 'message';
+    let spy = {
+      error: jest.spyOn(console, 'error').mockImplementation(() => { }),
+      warn: jest.spyOn(console, 'warn').mockImplementation(() => { }),
+      info: jest.spyOn(console, 'info').mockImplementation(() => { }),
+      log: jest.spyOn(console, 'log').mockImplementation(() => { })
+    };
+
+    const logger = new LogT(-1);
+    logger.error(TAG, message);
+    logger.warn(TAG, message);
+    logger.info(TAG, message);
+    logger.verbose(TAG, message);
+    logger.debug(TAG, message);
+    logger.silly(TAG, message);
+
+    expect(spy.error).not.toHaveBeenCalled();
+    expect(spy.warn).not.toHaveBeenCalled();
+    expect(spy.info).not.toHaveBeenCalled();
+    expect(spy.log).not.toHaveBeenCalled();
+
+    logger.showHidden(0);
+    expect(spy.error).toHaveBeenCalled();
+    expect(spy.warn).not.toHaveBeenCalled();
+    expect(spy.info).not.toHaveBeenCalled();
+    expect(spy.log).not.toHaveBeenCalled();
+
+    logger.showHidden(1);
+    expect(spy.warn).toHaveBeenCalled();
+    expect(spy.info).not.toHaveBeenCalled();
+    expect(spy.log).not.toHaveBeenCalled();
+
+    logger.showHidden(2);
+    expect(spy.info).toHaveBeenCalled();
+    expect(spy.log).not.toHaveBeenCalled();
+
+    logger.showHidden(3);
+    expect(spy.log).toHaveBeenCalled();
+
+    spy.log.mockClear();
+
+    logger.showHidden(4);
+    expect(spy.log).toHaveBeenCalled();
+
+    logger.showHidden(5);
+    expect(spy.log).toHaveBeenCalled();
+
+    spy.error.mockClear();
+    spy.warn.mockClear();
+    spy.info.mockClear();
+    spy.log.mockClear();
+  });
 });
