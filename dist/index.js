@@ -77,9 +77,7 @@ class LogT {
                     case LOG_LEVELS.silly:
                         this.originalLog(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
                         break;
-                    default:
-                        // eslint-disable-next-line no-console
-                        this.originalLog(tag, message, ...parts);
+                    // skip default case
                 }
             }
             else {
@@ -108,7 +106,7 @@ class LogT {
                         this.logLevel = LOG_LEVELS[logLevel];
                     }
                 }
-                else if (typeof logLevel === 'number') {
+                if (typeof logLevel === 'number') {
                     if (logLevel >= LOG_LEVELS.none && logLevel <= LOG_LEVELS.silly) {
                         this.logLevel = logLevel;
                     }
@@ -190,19 +188,19 @@ class LogT {
             const TAG = 'console';
             // eslint-disable-next-line no-console
             console.error = (message, ...parts) => {
-                this.log(LOG_LEVELS.error, TAG, message, ...parts);
+                this.error(TAG, message, ...parts);
             };
             // eslint-disable-next-line no-console
             console.warn = (message, ...parts) => {
-                this.log(LOG_LEVELS.warn, TAG, message, ...parts);
+                this.warn(TAG, message, ...parts);
             };
             // eslint-disable-next-line no-console
             console.info = (message, ...parts) => {
-                this.log(LOG_LEVELS.info, TAG, message, ...parts);
+                this.info(TAG, message, ...parts);
             };
             // eslint-disable-next-line no-console
             console.log = (message, ...parts) => {
-                this.log(LOG_LEVELS.debug, TAG, message, ...parts);
+                this.debug(TAG, message, ...parts);
             };
         };
         this.setLogLevel(logLevel);
