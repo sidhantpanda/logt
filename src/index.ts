@@ -23,19 +23,28 @@ const STYLES = {
   tag: 'color: black; background: #5bfff4; border-radius: 8px',
 };
 
+const enum LogTypes {
+  text = 'text', // eslint-disable-line no-unused-vars
+  image = 'img' // eslint-disable-line no-unused-vars
+}
+
 /**
  * Log item interface
  * This is the data structure for hidden logs
  */
 interface ILogItem {
+  /** Type of log */
+  type: LogTypes;
   /** Log level of message */
   level: number;
   /** Log tag for the message */
   tag: string;
   /** Log message */
-  message: string;
+  message?: string;
   /** Additional arguments passed on to `console` methods */
-  parts: any[];
+  parts?: any[];
+  /** URL in case of image */
+  url?: string;
 }
 
 /**
@@ -126,6 +135,7 @@ export default class LogT {
       }
     } else {
       this.hidden.push({
+        type: LogTypes.text,
         level,
         tag,
         message,
@@ -133,6 +143,24 @@ export default class LogT {
       });
     }
   };
+
+  /**
+   * Helper to print an image to console
+   * @param tag Log tag
+   * @param url URL for the image/gif
+   */
+  public img = (level: number, url?: string) => {
+    if (level <= this.logLevel) {
+      this.originalLog('%c ', `font-size:400px; background:url(${url}) no-repeat;`);
+    } else {
+      this.hidden.push({
+        type: LogTypes.image,
+        level,
+        tag: '',
+        url,
+      });
+    }
+  }
 
   /**
    * Get instance log level
@@ -232,7 +260,11 @@ export default class LogT {
     this.hidden = [];
 
     currentHidden.forEach(logItem => {
-      this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
+      if (logItem.type === LogTypes.text) {
+        this.log(logItem.level, logItem.tag, logItem.message, ...(logItem.parts || []));
+      } else {
+        this.img(logItem.level, logItem.url);
+      }
     });
 
     this.setLogLevel((oldLogLevel as LOG_LEVEL));
