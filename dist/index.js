@@ -8,7 +8,7 @@ const LOG_LEVELS = {
     info: 2,
     verbose: 3,
     debug: 4,
-    silly: 5,
+    silly: 5
 };
 /** All CSS requried to print labels */
 const STYLES = {
@@ -18,7 +18,7 @@ const STYLES = {
     verbose: 'color: white; background: #6435c9; border-radius: 8px',
     debug: 'color: white; background: #2185d0; border-radius: 8px',
     silly: 'color: white; background: #21ba45; border-radius: 8px',
-    tag: 'color: black; background: #5bfff4; border-radius: 8px',
+    tag: 'color: black; background: #5bfff4; border-radius: 8px'
 };
 /**
  * Logger Class Implementation
@@ -85,7 +85,7 @@ class LogT {
                     level,
                     tag,
                     message,
-                    parts,
+                    parts
                 });
             }
         };
