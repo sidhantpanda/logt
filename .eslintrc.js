@@ -16,7 +16,25 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'arrow-parens': [2, 'as-needed'],
-    'comma-dangle': [2, 'always-multiline'],
-    'default-case': ['error', { commentPattern: 'skip default case' }]
+    'comma-dangle': ['error', 'never'],
+    'default-case': ['error', { commentPattern: 'skip default case' }],
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        ts: 'never',
+        tsx: 'never',
+        js: 'never',
+        jsx: 'never'
+      }
+    ]
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/']
+      }
+    }
   }
 };
