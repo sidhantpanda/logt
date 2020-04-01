@@ -25,6 +25,11 @@
   <img src="https://i.imgur.com/efMwTMd.png" />
 </p>
 
+## See it in action
+Demo - <a href="https://sidhantpanda.github.io/logt/dist/">
+  https://sidhantpanda.github.io/logt/dist/
+</a>
+
 ## Features
 
 - **Small library size** - Only ~1.3KB gzipped!
