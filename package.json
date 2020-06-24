@@ -23,6 +23,9 @@
     "loglevel",
     "setlevel"
   ],
+  "files": [
+    "dist/**"
+  ],
   "author": "Sidhant Panda",
   "license": "MIT",
   "bugs": {
