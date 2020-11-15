@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const package = require('./package.json');
 
@@ -24,7 +23,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new webpack.BannerPlugin(
       `logt v${package.version}\nSidhant Panda\nhttps://bit.ly/2njty0V\n`
     ),
