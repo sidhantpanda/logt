@@ -47,6 +47,7 @@ interface IConsoleMethod {
    * @param message Log message
    * @param optionalParams Additional arguments to be printed
    */
+  // eslint-disable-next-line no-unused-vars
   (message?: any, ...optionalParams: any[]): void
 }
 
