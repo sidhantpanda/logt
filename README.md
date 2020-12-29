@@ -25,10 +25,16 @@
   <img src="https://i.imgur.com/efMwTMd.png" />
 </p>
 
+## See it in action
+Demo - <a href="https://sidhantpanda.github.io/logt/dist/">
+  https://sidhantpanda.github.io/logt/dist/
+</a>
+
 ## Features
 
-- **Small library size** - Only ~1.3KB gzipped!
+- **Small library size** - Only ~1.45KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
+- **[Images and GIFs](#imageloglevel-string--number-url-string)** log images and gifs directly in the console!
 - **[Override default console methods](#readconsole)** to use custom logger instead, anywhere on the web page
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
@@ -95,13 +101,7 @@ export default logger;
 ```typescript
 import LogT from "logt";
 
-let noneLogger,
-  errorLogger,
-  warnLogger,
-  infoLogger,
-  verboseLogger,
-  debugLogger,
-  sillyLogger;
+let logger;
 // Available log levels -  -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 // noneLogger will print nothing
@@ -117,34 +117,6 @@ errorLogger = new LogT("error");
 // if included via HTML script
 errorLogger = createLogger(0); // or
 errorLogger = createLogger("error");
-
-// warnLogger will print errors and warning messages
-warnLogger = new LogT(1); // or
-warnLogger = new LogT("warn");
-// if included via HTML script
-warnLogger = createLogger(1); // or
-warnLogger = createLogger("warn");
-
-// infoLogger will print errors, warning, and info messages
-infoLogger = new LogT(2); // or
-infoLogger = new LogT("info");
-// if included via HTML script
-infoLogger = createLogger(2); // or
-infoLogger = createLogger("info");
-
-// verboseLogger will print errors, warning, info and verbose messages
-verboseLogger = new LogT(3); // or
-verboseLogger = new LogT("verbose");
-// if included via HTML script
-verboseLogger = createLogger(3); // or
-verboseLogger = createLogger("verbose");
-
-// debugLogger will print errors, warning, info, verbose and debug messages
-debugLogger = new LogT(4); // or
-debugLogger = new LogT("debug");
-// if included via HTML script
-debugLogger = createLogger(4); // or
-debugLogger = createLogger("debug");
 
 // sillyLogger will print all messages
 sillyLogger = new LogT(5); // or
@@ -206,17 +178,24 @@ If any other value is supplied to the constructor, a default value of `none` is 
 - `message` - The silly log message
 - `...rest` - Any additional arguments to be passed onto `console.log`
 
+#### `image(logLevel: string | number, url: string)`
+
+##### Parameters
+
+- `logLevel` - 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' 
+- `url` - URL for the image or GIF
+
 #### `getLogLevel(): number`
 
 Returns the logger instance's log level in numeric form;
 
-#### `setLogLevel(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
+#### `setLogLevel(logLevel: string | number)`
 
 Update a logger instance's logLevel dynamically later.
 
 ##### Parameters
 
-- `logLevel` - New logLevel for the instance
+- `logLevel` - New logLevel for the instance. Values: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly'
 
 #### `showHidden(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 
@@ -258,6 +237,9 @@ console.log("log message"); // will be same as logger.debug('console', 'log mess
 
 ## Changelog
 
+### v1.4.0
+
+- [Added `image()` method](#imageloglevel-string--number-url-string)
 ### v1.2.0
 
 - [Added `readConsole()` method](#readconsole)

@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true
+    es6: true,
+    jest: true
   },
   extends: ['airbnb-base'],
   globals: {
@@ -15,6 +16,9 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    'no-shadow': 'off',
+    'no-unused-vars': 'off',
+    'no-console': 'off',
     'arrow-parens': [2, 'as-needed'],
     'comma-dangle': ['error', 'never'],
     'default-case': ['error', { commentPattern: 'skip default case' }],
@@ -27,7 +31,9 @@ module.exports = {
         js: 'never',
         jsx: 'never'
       }
-    ]
+    ],
+    '@typescript-eslint/no-shadow': ['error'],
+    '@typescript-eslint/no-unused-vars': ['error']
   },
   settings: {
     'import/resolver': {

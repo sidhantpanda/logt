@@ -10,6 +10,6 @@ const runExamples = () => {
   logger.verbose(TAG, 'example verbose');
   logger.debug(TAG, 'example debug');
   logger.silly(TAG, 'example silly');
-}
+};
 
 export default runExamples;
