@@ -22,7 +22,7 @@
 🖥️ A colorful logger for the browser
 
 <p align="center">
-  <img src="https://i.imgur.com/efMwTMd.png" />
+  <img src="https://media.giphy.com/media/tSOmOdnovQE5qIT00q/source.gif" />
 </p>
 
 ## See it in action
