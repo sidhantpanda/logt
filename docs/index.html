@@ -1,222 +1,383 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html class="default no-js">
 <head>
-  <!-- Standard Meta -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <!-- Site Properties -->
-  <title>🖥️ LogT - A colorful logger for the web</title>
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-  <script type="text/javascript" src="logt.min.js"></script>
-  <style type="text/css">
-    .hidden.menu {
-      display: none;
-    }
-
-    .masthead.segment {
-      min-height: 700px;
-      padding: 1em 0em;
-    }
-
-    .masthead .logo.item img {
-      margin-right: 1em;
-    }
-
-    .masthead .ui.menu .ui.button {
-      margin-left: 0.5em;
-    }
-
-    .masthead h1.ui.header {
-      margin-top: 3em;
-      margin-bottom: 0em;
-      font-size: 4em;
-      font-weight: normal;
-    }
-
-    .masthead h2 {
-      font-size: 1.7em;
-      font-weight: normal;
-    }
-
-    .ui.vertical.stripe {
-      padding: 8em 0em;
-    }
-
-    .ui.vertical.stripe h3 {
-      font-size: 2em;
-    }
-
-    .ui.vertical.stripe .button+h3,
-    .ui.vertical.stripe p+h3 {
-      margin-top: 3em;
-    }
-
-    .ui.vertical.stripe .floated.image {
-      clear: both;
-    }
-
-    .ui.vertical.stripe p {
-      font-size: 1.33em;
-    }
-
-    .ui.vertical.stripe .horizontal.divider {
-      margin: 3em 0em;
-    }
-
-    .quote.stripe.segment {
-      padding: 0em;
-    }
-
-    .quote.stripe.segment .grid .column {
-      padding-top: 5em;
-      padding-bottom: 5em;
-    }
-
-    .footer.segment {
-      padding: 5em 0em;
-    }
-
-    .secondary.pointing.menu .toc.item {
-      display: none;
-    }
-
-    @media only screen and (max-width: 700px) {
-      .ui.fixed.menu {
-        display: none !important;
-      }
-
-      .secondary.pointing.menu .item,
-      .secondary.pointing.menu .menu {
-        display: none;
-      }
-
-      .secondary.pointing.menu .toc.item {
-        display: block;
-      }
-
-      .masthead.segment {
-        min-height: 350px;
-      }
-
-      .masthead h1.ui.header {
-        font-size: 2em;
-        margin-top: 1.5em;
-      }
-
-      .masthead h2 {
-        margin-top: 0.5em;
-        font-size: 1.5em;
-      }
-    }
-  </style>
-  <script>
-
-
-    $(document).ready(function () {
-
-      // fix menu when passed
-      $('.masthead').visibility(
-        {
-          once: false,
-          onBottomPassed: function () {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function () {
-            $('.fixed.menu').transition('fade out');
-          }
-        }
-      );
-
-      // create sidebar and attach to menu open
-      $('.ui.sidebar').sidebar('attach events', '.toc.item');
-
-
-    });
-
-    var logger = createLogger(5);
-
-    function logError() {
-      var logTag = '.logError';
-      logger.error(logTag, new Error('sample error'));
-    }
-
-    function logWarn() {
-      var logTag = '.logWarn';
-      logger.warn(logTag, 'sample warning');
-    }
-
-    function logInfo() {
-      var logTag = '.logInfo';
-      logger.info(logTag, 'sample info');
-    }
-
-    function logVerbose() {
-      var logTag = '.logVerbose';
-      logger.verbose(logTag, 'sample verbose');
-    }
-
-    function logDebug() {
-      var logTag = '.logDebug';
-      logger.debug(logTag, 'sample debug');
-    }
-
-    function logSilly() {
-      var logTag = '.logSilly';
-      logger.silly(logTag, 'sample silly');
-    }
-  </script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>logt</title>
+	<meta name="description" content="Documentation for logt">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">logt</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>logt</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="https://www.npmjs.com/package/logt">
+					<img src="https://badge.fury.io/js/logt.svg" alt="npm version" />
+				</a>
+				<a href="https://david-dm.org/sidhantpanda/logt">
+					<img src="https://david-dm.org/sidhantpanda/logt.svg" alt="Dependency Status" />
+				</a>
+				<a href="https://david-dm.org/sidhantpanda/logt#info=devDependencies">
+					<img src="https://david-dm.org/sidhantpanda/logt/dev-status.svg" alt="devDependency Status" />
+				</a>
+				<a href="https://travis-ci.org/sidhantpanda/logt">
+					<img src="https://travis-ci.org/sidhantpanda/logt.svg?branch=master" alt="Build Status" />
+				</a>
+				<a href="https://codecov.io/gh/sidhantpanda/logt">
+					<img src="https://codecov.io/gh/sidhantpanda/logt/branch/master/graph/badge.svg" />
+				</a>
+				<a href="https://snyk.io//test/github/sidhantpanda/logt?targetFile=package.json">
+					<img src="https://snyk.io//test/github/sidhantpanda/logt/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io//test/github/sidhantpanda/logt?targetFile=package.json" style="max-width:100%;">
+				</a>
+				<a href="#logt" id="logt" style="color: inherit; text-decoration: none;">
+					<h1>LogT</h1>
+				</a>
+				<p>🖥️ A colorful logger for the browser</p>
+				<p align="center">
+					<img src="https://i.imgur.com/efMwTMd.png" />
+				</p>
+				<a href="#see-it-in-action" id="see-it-in-action" style="color: inherit; text-decoration: none;">
+					<h2>See it in action</h2>
+				</a>
+				<p>Demo - <a href="https://sidhantpanda.github.io/logt/dist/">
+						https://sidhantpanda.github.io/logt/dist/
+				</a></p>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li><strong>Small library size</strong> - Only ~1.45KB gzipped!</li>
+					<li><strong>Colorful labels</strong> to help distinguish logs by importance.</li>
+					<li><strong><a href="#imageloglevel-string--number-url-string">Images and GIFs</a></strong> log images and gifs directly in the console!</li>
+					<li><strong><a href="#readconsole">Override default console methods</a></strong> to use custom logger instead, anywhere on the web page</li>
+					<li><strong><a href="#logger-initialization">Log levels</a></strong> to hide less important log messages.</li>
+					<li><strong><a href="#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly">Show hidden messages programmatically</a></strong> to print logs hidden due log level.</li>
+					<li><strong>Built with TypeScript</strong> for detailed type info and that sweet sweet autocomplete.<p align="center">
+							<img src="https://media.giphy.com/media/ckNv6K3sRo8dWOUtH7/giphy.gif" />
+						</p>
+					</li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code>$ <span class="hljs-built_in">npm</span> i logt -S</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>You can use this logger for your frontend projects. You can choose as an ES6 module or directly include the script in HTML.</p>
+				<a href="#as-an-es6-module" id="as-an-es6-module" style="color: inherit; text-decoration: none;">
+					<h4>As an ES6 module</h4>
+				</a>
+				<p>Create a file in your project called <code>logger.js</code> or <code>logger.ts</code></p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> LogT <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;logt&quot;</span>;
 
-  <!-- Page Contents -->
-  <div class="pusher">
-    <div class="ui inverted vertical masthead center aligned segment">
-      <div class="ui text">
-        <h1 class="ui inverted header">
-          LogT
-        </h1>
-        <h2>Click a button to see a log in the developer console</h2>
-        <button class="ui huge red button" onclick="logError()">Error</button>
-        <button class="ui huge orange button" onclick="logWarn()">Warn</button>
-        <button class="ui huge olive button" onclick="logInfo()">Info</button>
-        <button class="ui huge violet button" onclick="logVerbose()">Verbose</button>
-        <button class="ui huge primary button" onclick="logDebug()">Debug</button>
-        <button class="ui huge green button" onclick="logSilly()">Silly</button>
-        <h2>
-          <a href="https://github.com/sidhantpanda/logt">
-            Installation and usage <i class="github icon"></i>
-          </a>
-        </h2>
-      </div>
+<span class="hljs-keyword">const</span> LOG_TAG = <span class="hljs-string">&quot;sample tag&quot;</span>;
+<span class="hljs-keyword">let</span> logger;
+<span class="hljs-keyword">if</span> (process.env.NODE_ENV === <span class="hljs-string">&quot;production&quot;</span>) {
+  logger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-string">&quot;error&quot;</span>); <span class="hljs-comment">// or logger = new LogT(&quot;none&quot;);</span>
+} <span class="hljs-keyword">else</span> {
+  logger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-string">&quot;silly&quot;</span>);
+}
 
-    </div>
+<span class="hljs-comment">// See documentation for `readConsole()` for usage</span>
+<span class="hljs-comment">// uncomment following line if you want to override default console methods</span>
+<span class="hljs-comment">// logger.readConsole();</span>
 
+logger.error(LOG_TAG, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;example error&quot;</span>));
 
-    <div class="ui vertical stripe segment">
-      <div class="ui middle aligned stackable grid container">
-        <div class="row centered">
-          <div class="twelve wide column middle aligned">
-            <h2>Try it in the developer console!</h2>
-            <br />
-            <script src="https://gist.github.com/sidhantpanda/38f8ff3f1bdcd93f6d3f56a4783c4b34.js"></script>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> logger;
+</code></pre>
+				<a href="#include-in-html" id="include-in-html" style="color: inherit; text-decoration: none;">
+					<h4>Include in HTML</h4>
+				</a>
+				<pre><code class="language-javascript">&lt;script src=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/gh/sidhantpanda/logt/dist/logt.min.js&quot;</span>&gt;&lt;/script&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">var</span> LOG_TAG = <span class="hljs-string">&#x27;sample tag&#x27;</span>;
+  <span class="hljs-keyword">var</span> logger = createLogger(<span class="hljs-string">&#x27;error&#x27;</span>);
 
-          </div>
-        </div>
-        <div class="row">
-          <div class="eight wide column">
+  <span class="hljs-comment">// See documentation for `readConsole()` for usage</span>
+  <span class="hljs-comment">// uncomment following line if you want to override default console methods</span>
+  <span class="hljs-comment">// logger.readConsole();</span>
 
-          </div>
-        </div>
-      </div>
-    </div>
-<script type="text/javascript" src="logt.min.js"></script></body>
+  logger.error(LOG_TAG, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;example error&#x27;</span>));
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<a href="#logger-initialization" id="logger-initialization" style="color: inherit; text-decoration: none;">
+					<h4>Logger initialization</h4>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> LogT <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;logt&quot;</span>;
 
+<span class="hljs-keyword">let</span> logger;
+<span class="hljs-comment">// Available log levels -  -1 | 0 | 1 | 2 | 3 | 4 | 5 | &#x27;none&#x27; | &#x27;error&#x27; | &#x27;warn&#x27; | &#x27;info&#x27; | &#x27;verbose&#x27; | &#x27;debug&#x27; | &#x27;silly&#x27;;</span>
+
+<span class="hljs-comment">// noneLogger will print nothing</span>
+noneLogger = <span class="hljs-keyword">new</span> LogT(-<span class="hljs-number">1</span>); <span class="hljs-comment">// or</span>
+noneLogger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-string">&quot;none&quot;</span>);
+<span class="hljs-comment">// if included via HTML script</span>
+noneLogger = createLogger(-<span class="hljs-number">1</span>); <span class="hljs-comment">// or</span>
+noneLogger = createLogger(<span class="hljs-string">&quot;none&quot;</span>);
+
+<span class="hljs-comment">// errorLogger will only error messages</span>
+errorLogger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-number">0</span>); <span class="hljs-comment">// or</span>
+errorLogger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-string">&quot;error&quot;</span>);
+<span class="hljs-comment">// if included via HTML script</span>
+errorLogger = createLogger(<span class="hljs-number">0</span>); <span class="hljs-comment">// or</span>
+errorLogger = createLogger(<span class="hljs-string">&quot;error&quot;</span>);
+
+<span class="hljs-comment">// sillyLogger will print all messages</span>
+sillyLogger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-number">5</span>); <span class="hljs-comment">// or</span>
+sillyLogger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-string">&quot;silly&quot;</span>);
+<span class="hljs-comment">// if included via HTML script</span>
+sillyLogger = createLogger(<span class="hljs-number">5</span>); <span class="hljs-comment">// or</span>
+sillyLogger = createLogger(<span class="hljs-string">&quot;silly&quot;</span>);</code></pre>
+				<p>If any other value is supplied to the constructor, a default value of <code>none</code> is used.</p>
+				<a href="#apis" id="apis" style="color: inherit; text-decoration: none;">
+					<h3>APIs</h3>
+				</a>
+				<a href="#errorlogtag-string-message-any-rest-any" id="errorlogtag-string-message-any-rest-any" style="color: inherit; text-decoration: none;">
+					<h4><code>error(logTag: string, message: any, ...rest: any[])</code></h4>
+				</a>
+				<a href="#parameters" id="parameters" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logTag</code> - A log tag to identify the message and point to source of the message.</li>
+					<li><code>message</code> - The error log message</li>
+					<li><code>...rest</code> - Any additional arguments to be passed onto <code>console.error</code></li>
+				</ul>
+				<a href="#warnlogtag-string-message-any-rest-any" id="warnlogtag-string-message-any-rest-any" style="color: inherit; text-decoration: none;">
+					<h4><code>warn(logTag: string, message: any, ...rest: any[])</code></h4>
+				</a>
+				<a href="#parameters-1" id="parameters-1" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logTag</code> - A log tag to identify the message and point to source of the message.</li>
+					<li><code>message</code> - The warning log message</li>
+					<li><code>...rest</code> - Any additional arguments to be passed onto <code>console.warn</code></li>
+				</ul>
+				<a href="#infologtag-string-message-any-rest-any" id="infologtag-string-message-any-rest-any" style="color: inherit; text-decoration: none;">
+					<h4><code>info(logTag: string, message: any, ...rest: any[])</code></h4>
+				</a>
+				<a href="#parameters-2" id="parameters-2" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logTag</code> - A log tag to identify the message and point to source of the message.</li>
+					<li><code>message</code> - The info log message</li>
+					<li><code>...rest</code> - Any additional arguments to be passed onto <code>console.info</code></li>
+				</ul>
+				<a href="#verboselogtag-string-message-any-rest-any" id="verboselogtag-string-message-any-rest-any" style="color: inherit; text-decoration: none;">
+					<h4><code>verbose(logTag: string, message: any, ...rest: any[])</code></h4>
+				</a>
+				<a href="#parameters-3" id="parameters-3" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logTag</code> - A log tag to identify the message and point to source of the message.</li>
+					<li><code>message</code> - The verbose log message</li>
+					<li><code>...rest</code> - Any additional arguments to be passed onto <code>console.log</code></li>
+				</ul>
+				<a href="#debuglogtag-string-message-any-rest-any" id="debuglogtag-string-message-any-rest-any" style="color: inherit; text-decoration: none;">
+					<h4><code>debug(logTag: string, message: any, ...rest: any[])</code></h4>
+				</a>
+				<a href="#parameters-4" id="parameters-4" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logTag</code> - A log tag to identify the message and point to source of the message.</li>
+					<li><code>message</code> - The debug log message</li>
+					<li><code>...rest</code> - Any additional arguments to be passed onto <code>console.log</code></li>
+				</ul>
+				<a href="#sillylogtag-string-message-any-rest-any" id="sillylogtag-string-message-any-rest-any" style="color: inherit; text-decoration: none;">
+					<h4><code>silly(logTag: string, message: any, ...rest: any[])</code></h4>
+				</a>
+				<a href="#parameters-5" id="parameters-5" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logTag</code> - A log tag to identify the message and point to source of the message.</li>
+					<li><code>message</code> - The silly log message</li>
+					<li><code>...rest</code> - Any additional arguments to be passed onto <code>console.log</code></li>
+				</ul>
+				<a href="#imageloglevel-string--number-url-string" id="imageloglevel-string--number-url-string" style="color: inherit; text-decoration: none;">
+					<h4><code>image(logLevel: string | number, url: string)</code></h4>
+				</a>
+				<a href="#parameters-6" id="parameters-6" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logLevel</code> - 0 | 1 | 2 | 3 | 4 | 5 | &#39;error&#39; | &#39;warn&#39; | &#39;info&#39; | &#39;verbose&#39; | &#39;debug&#39; </li>
+					<li><code>url</code> - URL for the image or GIF</li>
+				</ul>
+				<a href="#getloglevel-number" id="getloglevel-number" style="color: inherit; text-decoration: none;">
+					<h4><code>getLogLevel(): number</code></h4>
+				</a>
+				<p>Returns the logger instance&#39;s log level in numeric form;</p>
+				<a href="#setloglevelloglevel-string--number" id="setloglevelloglevel-string--number" style="color: inherit; text-decoration: none;">
+					<h4><code>setLogLevel(logLevel: string | number)</code></h4>
+				</a>
+				<p>Update a logger instance&#39;s logLevel dynamically later.</p>
+				<a href="#parameters-7" id="parameters-7" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logLevel</code> - New logLevel for the instance. Values: -1 | 0 | 1 | 2 | 3 | 4 | 5 | &#39;none&#39; | &#39;error&#39; | &#39;warn&#39; | &#39;info&#39; | &#39;verbose&#39; | &#39;debug&#39; | &#39;silly&#39;</li>
+				</ul>
+				<a href="#showhiddenloglevel--1--0--1--2--3--4--5--39none39--39error39--39warn39--39info39--39verbose39--39debug39--39silly39" id="showhiddenloglevel--1--0--1--2--3--4--5--39none39--39error39--39warn39--39info39--39verbose39--39debug39--39silly39" style="color: inherit; text-decoration: none;">
+					<h4><code>showHidden(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | &#39;none&#39; | &#39;error&#39; | &#39;warn&#39; | &#39;info&#39; | &#39;verbose&#39; | &#39;debug&#39; | &#39;silly&#39;)</code></h4>
+				</a>
+				<p>Show log messages hidden by the logger. Only logs equal or above <code>logLevel</code> will be shown.</p>
+				<a href="#parameters-8" id="parameters-8" style="color: inherit; text-decoration: none;">
+					<h5>Parameters</h5>
+				</a>
+				<ul>
+					<li><code>logLevel</code> - Log level for which logs are to be shown</li>
+				</ul>
+				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+					<h5>Example</h5>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> logger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-number">0</span>);
+logger.warn(<span class="hljs-string">&quot;TAG&quot;</span>, <span class="hljs-string">&quot;warning message&quot;</span>); <span class="hljs-comment">// Will not print anything to console</span>
+logger.info(<span class="hljs-string">&quot;TAG&quot;</span>, <span class="hljs-string">&quot;info message&quot;</span>); <span class="hljs-comment">// Will not print anything to console</span>
+logger.debug(<span class="hljs-string">&quot;TAG&quot;</span>, <span class="hljs-string">&quot;debug message&quot;</span>); <span class="hljs-comment">// Will not print anything to console</span>
+logger.silly(<span class="hljs-string">&quot;TAG&quot;</span>, <span class="hljs-string">&quot;silly message&quot;</span>); <span class="hljs-comment">// Will not print anything to console</span>
+
+logger.showHidden(<span class="hljs-number">1</span>); <span class="hljs-comment">// Will print the warning message</span>
+logger.showHidden(<span class="hljs-number">2</span>); <span class="hljs-comment">// Will print the info message</span>
+logger.showHidden(<span class="hljs-number">5</span>); <span class="hljs-comment">// Will print the debug as well as silly message</span></code></pre>
+				<a href="#readconsole" id="readconsole" style="color: inherit; text-decoration: none;">
+					<h4><code>readConsole()</code></h4>
+				</a>
+				<p>Replace default <code>console.error</code>, <code>console.warn</code>, <code>console.info</code>, <code>console.log</code> implementation with <code>logt</code> logger.</p>
+				<a href="#example-1" id="example-1" style="color: inherit; text-decoration: none;">
+					<h5>Example</h5>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> logger = <span class="hljs-keyword">new</span> LogT(<span class="hljs-number">0</span>);
+logger.readConsole();
+
+<span class="hljs-built_in">console</span>.error(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;test error&quot;</span>)); <span class="hljs-comment">// will be same as logger.error(&#x27;console&#x27;, new Error(&#x27;test error&#x27;));</span>
+<span class="hljs-built_in">console</span>.warn(<span class="hljs-string">&quot;warn message&quot;</span>); <span class="hljs-comment">// will be same as logger.warn(&#x27;console&#x27;, &#x27;warn message&#x27;);</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;info message&quot;</span>); <span class="hljs-comment">// will be same as logger.info(&#x27;console&#x27;, &#x27;info message&#x27;);</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;log message&quot;</span>); <span class="hljs-comment">// will be same as logger.debug(&#x27;console&#x27;, &#x27;log message&#x27;);</span></code></pre>
+				<a href="#changelog" id="changelog" style="color: inherit; text-decoration: none;">
+					<h2>Changelog</h2>
+				</a>
+				<a href="#v140" id="v140" style="color: inherit; text-decoration: none;">
+					<h3>v1.4.0</h3>
+				</a>
+				<ul>
+					<li><p><a href="#imageloglevel-string--number-url-string">Added <code>image()</code> method</a></p>
+						<a href="#v120" id="v120" style="color: inherit; text-decoration: none;">
+							<h3>v1.2.0</h3>
+						</a>
+					</li>
+					<li><p><a href="#readconsole">Added <code>readConsole()</code> method</a></p>
+					</li>
+				</ul>
+				<a href="#roadmap" id="roadmap" style="color: inherit; text-decoration: none;">
+					<h2>Roadmap</h2>
+				</a>
+				<p>Checkout the <a href="https://github.com/sidhantpanda/logt/projects/1">project page</a> for details about future development.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
 </html>
