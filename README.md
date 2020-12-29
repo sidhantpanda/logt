@@ -32,8 +32,9 @@ Demo - <a href="https://sidhantpanda.github.io/logt/dist/">
 
 ## Features
 
-- **Small library size** - Only ~1.3KB gzipped!
+- **Small library size** - Only ~1.45KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
+- **[Images and GIFs](#logger-initialization)** log images and gifs directly in the console!
 - **[Override default console methods](#readconsole)** to use custom logger instead, anywhere on the web page
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
@@ -100,13 +101,7 @@ export default logger;
 ```typescript
 import LogT from "logt";
 
-let noneLogger,
-  errorLogger,
-  warnLogger,
-  infoLogger,
-  verboseLogger,
-  debugLogger,
-  sillyLogger;
+let logger;
 // Available log levels -  -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 
 // noneLogger will print nothing
@@ -131,7 +126,7 @@ warnLogger = createLogger(1); // or
 warnLogger = createLogger("warn");
 
 // infoLogger will print errors, warning, and info messages
-infoLogger = new LogT(2); // or
+logger = new LogT(2); // or
 infoLogger = new LogT("info");
 // if included via HTML script
 infoLogger = createLogger(2); // or
@@ -211,17 +206,24 @@ If any other value is supplied to the constructor, a default value of `none` is 
 - `message` - The silly log message
 - `...rest` - Any additional arguments to be passed onto `console.log`
 
+#### `image(logLevel: string | number, url: string)`
+
+##### Parameters
+
+- `logLevel` - 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' 
+- `url` - URL for the image or GIF
+
 #### `getLogLevel(): number`
 
 Returns the logger instance's log level in numeric form;
 
-#### `setLogLevel(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
+#### `setLogLevel(logLevel: string | number)`
 
 Update a logger instance's logLevel dynamically later.
 
 ##### Parameters
 
-- `logLevel` - New logLevel for the instance
+- `logLevel` - New logLevel for the instance. Values: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly'
 
 #### `showHidden(logLevel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly')`
 

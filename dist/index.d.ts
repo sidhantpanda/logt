@@ -4,21 +4,14 @@ export declare type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 
  * Logger Class Implementation
  * @author Sidhant Panda
  *
- * Email: sidhant@panda.fyi
+ * Email: `sidhant@panda.fyi`
  */
 export default class LogT {
     /** Log level, above which logs will be printed to console */
     private logLevel;
     /** Logs which are hidden - not been printed to console */
     private hidden;
-    /** Original `console.error` method */
-    private originalError;
-    /** Original `console.warn` method */
-    private originalWarn;
-    /** Original `console.info` method */
-    private originalInfo;
-    /** Original `console.log` method */
-    private originalLog;
+    private loggerMap;
     /**
      * Create a LogT instance
      * @param logLevel Logger will print logs to consoles with level less than equal to this
@@ -37,12 +30,13 @@ export default class LogT {
      * Get instance log level
      */
     getLogLevel: () => number;
+    private getFinalLevel;
     /**
      * Set instance log level.
      * @param logLevel Log level set on instance.
      * Logs which have levels less than or equal to this value will be printed to console
      */
-    setLogLevel: (logLevel: LOG_LEVEL) => void;
+    setLogLevel: (level: LOG_LEVEL) => void;
     /**
      * Helper to print error logs
      * @param tag Log tag
@@ -94,4 +88,12 @@ export default class LogT {
      * Method to override `window.console` methods
      */
     readConsole: () => void;
+    private logImage;
+    /**
+     * Prints an image from a given URL to the console or
+     * @param level Log level for the image
+     * @param url URL of the image
+     * @param callback Get access to `Image` object during printing to console. For testing only
+     */
+    image: (level: LOG_LEVEL, url: string, callback?: ((image: HTMLImageElement) => void) | undefined) => void;
 }

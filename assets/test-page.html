@@ -171,6 +171,10 @@
       var logTag = '.logSilly';
       logger.silly(logTag, 'sample silly');
     }
+
+    function logImage() {
+      logger.image(1, 'https://media.giphy.com/media/tgSPq03054DTy/source.gif');
+    }
   </script>
 </head>
 
@@ -184,12 +188,16 @@
           LogT
         </h1>
         <h2>Click a button to see a log in the developer console</h2>
+        <button class="ui huge white button" onclick="logImage()">Image (new!)</button>
+        <br/>
+        <br/>
         <button class="ui huge red button" onclick="logError()">Error</button>
         <button class="ui huge orange button" onclick="logWarn()">Warn</button>
         <button class="ui huge olive button" onclick="logInfo()">Info</button>
         <button class="ui huge violet button" onclick="logVerbose()">Verbose</button>
         <button class="ui huge primary button" onclick="logDebug()">Debug</button>
         <button class="ui huge green button" onclick="logSilly()">Silly</button>
+        
         <h2>
           <a href="https://github.com/sidhantpanda/logt">
             Installation and usage <i class="github icon"></i>

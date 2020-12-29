@@ -13,7 +13,7 @@ const LOG_LEVELS = {
 };
 
 /** All CSS requried to print labels */
-const STYLES = {
+const STYLES: { [key: string]: string } = {
   error: 'color: white; background: #db2828; border-radius: 8px',
   warn: 'color: white; background: #fbbd08; border-radius: 8px',
   info: 'color: white; background: #c4c64f; border-radius: 8px',
@@ -23,11 +23,18 @@ const STYLES = {
   tag: 'color: black; background: #5bfff4; border-radius: 8px'
 };
 
+enum LOG_ITEM_TYPE {
+  text = 'text',
+  image = 'image'
+}
+
 /**
  * Log item interface
  * This is the data structure for hidden logs
  */
-interface ILogItem {
+interface ILogItemText {
+  /** Type of message */
+  type: LOG_ITEM_TYPE.text;
   /** Log level of message */
   level: number;
   /** Log tag for the message */
@@ -36,7 +43,18 @@ interface ILogItem {
   message: string;
   /** Additional arguments passed on to `console` methods */
   parts: any[];
+  /** URL of image if type is image */
+  url?: string;
 }
+
+interface ILogItemImage {
+  type: LOG_ITEM_TYPE.image;
+  level: number;
+  url: string;
+  callback?: { (image: HTMLImageElement): void };
+}
+
+type ILogItem = ILogItemText | ILogItemImage;
 
 /**
  * Console method interface
@@ -55,7 +73,7 @@ interface IConsoleMethod {
  * Logger Class Implementation
  * @author Sidhant Panda
  *
- * Email: sidhant@panda.fyi
+ * Email: `sidhant@panda.fyi`
  */
 export default class LogT {
   /** Log level, above which logs will be printed to console */
@@ -64,21 +82,14 @@ export default class LogT {
   /** Logs which are hidden - not been printed to console */
   private hidden: ILogItem[] = [];
 
-  /** Original `console.error` method */
-  // eslint-disable-next-line no-console
-  private originalError: IConsoleMethod = console.error;
-
-  /** Original `console.warn` method */
-  // eslint-disable-next-line no-console
-  private originalWarn: IConsoleMethod = console.warn;
-
-  /** Original `console.info` method */
-  // eslint-disable-next-line no-console
-  private originalInfo: IConsoleMethod = console.info;
-
-  /** Original `console.log` method */
-  // eslint-disable-next-line no-console
-  private originalLog: IConsoleMethod = console.log;
+  private loggerMap: { [key: number]: { text: string, logger: IConsoleMethod } } = {
+    0: { text: 'error', logger: console.error },
+    1: { text: 'warn', logger: console.warn },
+    2: { text: 'info', logger: console.info },
+    3: { text: 'verbose', logger: console.log },
+    4: { text: 'debug', logger: console.debug },
+    5: { text: 'silly', logger: console.log }
+  };
 
   /**
    * Create a LogT instance
@@ -98,35 +109,20 @@ export default class LogT {
    */
   private log = (level: number, tag: string, message: any, ...parts: any[]) => {
     if (level <= this.logLevel) {
-      switch (level) {
-        case LOG_LEVELS.error:
-          this.originalError(`%c error %c %c ${tag} `, STYLES.error, '', STYLES.tag, message, ...parts);
-          break;
-
-        case LOG_LEVELS.warn:
-          this.originalWarn(`%c warn %c %c ${tag} `, STYLES.warn, '', STYLES.tag, message, ...parts);
-          break;
-
-        case LOG_LEVELS.info:
-          this.originalInfo(`%c info %c %c ${tag} `, STYLES.info, '', STYLES.tag, message, ...parts);
-          break;
-
-        case LOG_LEVELS.verbose:
-          this.originalLog(`%c verbose %c %c ${tag} `, STYLES.verbose, '', STYLES.tag, message, ...parts);
-          break;
-
-        case LOG_LEVELS.debug:
-          this.originalLog(`%c debug %c %c ${tag} `, STYLES.debug, '', STYLES.tag, message, ...parts);
-          break;
-
-        case LOG_LEVELS.silly:
-          this.originalLog(`%c silly %c %c ${tag} `, STYLES.silly, '', STYLES.tag, message, ...parts);
-          break;
-
-        // skip default case
+      if (this.loggerMap[level]) {
+        const loggerToUse = this.loggerMap[level].logger;
+        loggerToUse(
+          `%c ${this.loggerMap[level].text} %c %c ${tag} `,
+          STYLES[this.loggerMap[level].text],
+          '',
+          STYLES.tag,
+          message,
+          ...parts
+        );
       }
     } else {
       this.hidden.push({
+        type: LOG_ITEM_TYPE.text,
         level,
         tag,
         message,
@@ -140,25 +136,30 @@ export default class LogT {
    */
   public getLogLevel = (): number => this.logLevel;
 
+  private getFinalLevel = (level: LOG_LEVEL): number => {
+    if (level != null) {
+      if (typeof level === 'string') {
+        if (LOG_LEVELS[level] != null) {
+          return LOG_LEVELS[level];
+        }
+      }
+      if (typeof level === 'number') {
+        if (level >= LOG_LEVELS.none && level <= LOG_LEVELS.silly) {
+          return level;
+        }
+      }
+    }
+    return LOG_LEVELS.none;
+  }
+
   /**
    * Set instance log level.
    * @param logLevel Log level set on instance.
    * Logs which have levels less than or equal to this value will be printed to console
    */
-  public setLogLevel = (logLevel: LOG_LEVEL) => {
+  public setLogLevel = (level: LOG_LEVEL) => {
     // Check if logLevel value was supplied
-    if (logLevel != null) {
-      if (typeof logLevel === 'string') {
-        if (LOG_LEVELS[logLevel] != null) {
-          this.logLevel = LOG_LEVELS[logLevel];
-        }
-      }
-      if (typeof logLevel === 'number') {
-        if (logLevel >= LOG_LEVELS.none && logLevel <= LOG_LEVELS.silly) {
-          this.logLevel = logLevel;
-        }
-      }
-    }
+    this.logLevel = this.getFinalLevel(level);
   };
 
   /**
@@ -233,7 +234,11 @@ export default class LogT {
     this.hidden = [];
 
     currentHidden.forEach(logItem => {
-      this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
+      if (logItem.type === LOG_ITEM_TYPE.text) {
+        this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
+      } else if (logItem.type === LOG_ITEM_TYPE.image) {
+        this.logImage(logItem.level, logItem.url, logItem.callback);
+      }
     });
 
     this.setLogLevel((oldLogLevel as LOG_LEVEL));
@@ -244,24 +249,71 @@ export default class LogT {
    */
   public readConsole = () => {
     const TAG = 'console';
-    // eslint-disable-next-line no-console
     console.error = (message?: any, ...parts: any[]) => {
       this.error(TAG, message, ...parts);
     };
 
-    // eslint-disable-next-line no-console
     console.warn = (message?: any, ...parts: any[]) => {
       this.warn(TAG, message, ...parts);
     };
 
-    // eslint-disable-next-line no-console
     console.info = (message?: any, ...parts: any[]) => {
       this.info(TAG, message, ...parts);
     };
 
-    // eslint-disable-next-line no-console
     console.log = (message?: any, ...parts: any[]) => {
       this.debug(TAG, message, ...parts);
     };
   };
+
+  private logImage = (level: number, url: string,
+    callback?: { (image: HTMLImageElement): void }) => {
+    const image = new Image();
+    let loaded = false;
+
+    image.onload = () => {
+      if (!loaded) {
+        loaded = true;
+        const style = [
+          'font-size: 1px;',
+          `line-height: ${image.height % 2}px;`,
+          `padding: ${image.height * 0.5}px ${image.width * 0.5}px;`,
+          `background-size: ${image.width}px ${image.height}px;`,
+          `background: url('${url}') no-repeat;`
+        ].join(' ');
+
+        if (level <= this.logLevel) {
+          let loggerToUse = this.loggerMap[LOG_LEVELS.verbose].logger;
+          if (this.loggerMap[level]) {
+            loggerToUse = this.loggerMap[level].logger;
+          }
+          loggerToUse('%c ', style);
+        } else {
+          this.hidden.push({
+            type: LOG_ITEM_TYPE.image,
+            level,
+            url,
+            callback
+          });
+        }
+      }
+    };
+
+    // Actually loads the image
+    image.src = url;
+    if (callback) {
+      callback(image);
+    }
+  }
+
+  /**
+   * Prints an image from a given URL to the console or
+   * @param level Log level for the image
+   * @param url URL of the image
+   * @param callback Get access to `Image` object during printing to console. For testing only
+   */
+  public image = (level: LOG_LEVEL, url: string,
+    callback?: { (image: HTMLImageElement): void }) => {
+    this.logImage(this.getFinalLevel(level), url, callback);
+  }
 }
