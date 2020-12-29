@@ -34,7 +34,7 @@ Demo - <a href="https://sidhantpanda.github.io/logt/dist/">
 
 - **Small library size** - Only ~1.45KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
-- **[Images and GIFs](#logger-initialization)** log images and gifs directly in the console!
+- **[Images and GIFs](#imageloglevel-string--number-url-string)** log images and gifs directly in the console!
 - **[Override default console methods](#readconsole)** to use custom logger instead, anywhere on the web page
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
@@ -117,34 +117,6 @@ errorLogger = new LogT("error");
 // if included via HTML script
 errorLogger = createLogger(0); // or
 errorLogger = createLogger("error");
-
-// warnLogger will print errors and warning messages
-warnLogger = new LogT(1); // or
-warnLogger = new LogT("warn");
-// if included via HTML script
-warnLogger = createLogger(1); // or
-warnLogger = createLogger("warn");
-
-// infoLogger will print errors, warning, and info messages
-logger = new LogT(2); // or
-infoLogger = new LogT("info");
-// if included via HTML script
-infoLogger = createLogger(2); // or
-infoLogger = createLogger("info");
-
-// verboseLogger will print errors, warning, info and verbose messages
-verboseLogger = new LogT(3); // or
-verboseLogger = new LogT("verbose");
-// if included via HTML script
-verboseLogger = createLogger(3); // or
-verboseLogger = createLogger("verbose");
-
-// debugLogger will print errors, warning, info, verbose and debug messages
-debugLogger = new LogT(4); // or
-debugLogger = new LogT("debug");
-// if included via HTML script
-debugLogger = createLogger(4); // or
-debugLogger = createLogger("debug");
 
 // sillyLogger will print all messages
 sillyLogger = new LogT(5); // or
@@ -265,6 +237,9 @@ console.log("log message"); // will be same as logger.debug('console', 'log mess
 
 ## Changelog
 
+### v1.4.0
+
+- [Added `image()` method](#imageloglevel-string--number-url-string)
 ### v1.2.0
 
 - [Added `readConsole()` method](#readconsole)
