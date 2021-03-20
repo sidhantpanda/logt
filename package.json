@@ -4,7 +4,6 @@
   "description": "🖥️ A colourful logger for the browser",
   "main": "dist/index.js",
   "scripts": {
-    "prepare": "husky install",
     "lint": "eslint src/index.ts",
     "docs": "typedoc --mode modules --out docs src/index.ts",
     "dev": "webpack serve --config webpack.dev.js --open",
