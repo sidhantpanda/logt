@@ -4,6 +4,7 @@
   "description": "🖥️ A colourful logger for the browser",
   "main": "dist/index.js",
   "scripts": {
+    "prepare": "husky install",
     "lint": "eslint src/index.ts",
     "docs": "typedoc --mode modules --out docs src/index.ts",
     "dev": "webpack serve --config webpack.dev.js --open",
@@ -51,11 +52,5 @@
     "webpack-cli": "4.5.0",
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "5.7.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
-    }
   }
 }
