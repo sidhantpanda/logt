@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/index.ts",
-    "docs": "typedoc --mode modules --out docs src/index.ts",
+    "docs": "typedoc --out docs src/index.ts",
     "dev": "webpack serve --config webpack.dev.js --open",
     "build": "webpack && tsc --declaration",
     "test": "jest"
