@@ -1,5 +1,5 @@
 /** Valid logLevel values */
-export declare type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
+export type LOG_LEVEL = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 'none' | 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
 /**
  * Logger Class Implementation
  * @author Sidhant Panda
@@ -88,8 +88,9 @@ export default class LogT {
      * Method to override `window.console` methods
      */
     readConsole: () => void;
-    private logImage;
     /**
+     * @deprecated This method is deprecated. Newwer versions of Chrome no longer support logging images.
+     *
      * Prints an image from a given URL to the console or
      * @param level Log level for the image
      * @param url URL of the image

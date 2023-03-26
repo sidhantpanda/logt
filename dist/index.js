@@ -8,7 +8,7 @@ const LOG_LEVELS = {
     info: 2,
     verbose: 3,
     debug: 4,
-    silly: 5
+    silly: 5,
 };
 /** All CSS requried to print labels */
 const STYLES = {
@@ -18,13 +18,8 @@ const STYLES = {
     verbose: 'color: white; background: #6435c9; border-radius: 8px',
     debug: 'color: white; background: #2185d0; border-radius: 8px',
     silly: 'color: white; background: #21ba45; border-radius: 8px',
-    tag: 'color: black; background: #5bfff4; border-radius: 8px'
+    tag: 'color: black; background: #5bfff4; border-radius: 8px',
 };
-var LOG_ITEM_TYPE;
-(function (LOG_ITEM_TYPE) {
-    LOG_ITEM_TYPE["text"] = "text";
-    LOG_ITEM_TYPE["image"] = "image";
-})(LOG_ITEM_TYPE || (LOG_ITEM_TYPE = {}));
 /**
  * Logger Class Implementation
  * @author Sidhant Panda
@@ -47,7 +42,7 @@ class LogT {
             2: { text: 'info', logger: console.info },
             3: { text: 'verbose', logger: console.log },
             4: { text: 'debug', logger: console.debug },
-            5: { text: 'silly', logger: console.log }
+            5: { text: 'silly', logger: console.log },
         };
         /**
          * Internal log method which prints valid logs
@@ -66,11 +61,10 @@ class LogT {
             }
             else {
                 this.hidden.push({
-                    type: LOG_ITEM_TYPE.text,
                     level,
                     tag,
                     message,
-                    parts
+                    parts,
                 });
             }
         };
@@ -78,6 +72,7 @@ class LogT {
          * Get instance log level
          */
         this.getLogLevel = () => this.logLevel;
+        // eslint-disable-next-line class-methods-use-this
         this.getFinalLevel = (level) => {
             if (level != null) {
                 if (typeof level === 'string') {
@@ -165,13 +160,8 @@ class LogT {
             this.setLogLevel(logLevel);
             const currentHidden = this.hidden;
             this.hidden = [];
-            currentHidden.forEach(logItem => {
-                if (logItem.type === LOG_ITEM_TYPE.text) {
-                    this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
-                }
-                else if (logItem.type === LOG_ITEM_TYPE.image) {
-                    this.logImage(logItem.level, logItem.url, logItem.callback);
-                }
+            currentHidden.forEach((logItem) => {
+                this.log(logItem.level, logItem.tag, logItem.message, ...logItem.parts);
             });
             this.setLogLevel(oldLogLevel);
         };
@@ -193,50 +183,16 @@ class LogT {
                 this.debug(TAG, message, ...parts);
             };
         };
-        this.logImage = (level, url, callback) => {
-            const image = new Image();
-            let loaded = false;
-            image.onload = () => {
-                if (!loaded) {
-                    loaded = true;
-                    const style = [
-                        'font-size: 1px;',
-                        `line-height: ${image.height % 2}px;`,
-                        `padding: ${image.height * 0.5}px ${image.width * 0.5}px;`,
-                        `background-size: ${image.width}px ${image.height}px;`,
-                        `background: url('${url}') no-repeat;`
-                    ].join(' ');
-                    if (level <= this.logLevel) {
-                        let loggerToUse = this.loggerMap[LOG_LEVELS.verbose].logger;
-                        if (this.loggerMap[level]) {
-                            loggerToUse = this.loggerMap[level].logger;
-                        }
-                        loggerToUse('%c ', style);
-                    }
-                    else {
-                        this.hidden.push({
-                            type: LOG_ITEM_TYPE.image,
-                            level,
-                            url,
-                            callback
-                        });
-                    }
-                }
-            };
-            // Actually loads the image
-            image.src = url;
-            if (callback) {
-                callback(image);
-            }
-        };
         /**
+         * @deprecated This method is deprecated. Newwer versions of Chrome no longer support logging images.
+         *
          * Prints an image from a given URL to the console or
          * @param level Log level for the image
          * @param url URL of the image
          * @param callback Get access to `Image` object during printing to console. For testing only
          */
         this.image = (level, url, callback) => {
-            this.logImage(this.getFinalLevel(level), url, callback);
+            this.warn('logImage', 'This method is deprecated. Newwer versions of Chrome no longer support logging images.');
         };
         this.setLogLevel(logLevel);
     }
