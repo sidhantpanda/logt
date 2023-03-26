@@ -34,7 +34,6 @@ Demo - <a href="https://sidhantpanda.github.io/logt/dist/">
 
 - **Small library size** - Only ~1.45KB gzipped!
 - **Colorful labels** to help distinguish logs by importance.
-- **[Images and GIFs](#imageloglevel-string--number-url-string)** log images and gifs directly in the console!
 - **[Override default console methods](#readconsole)** to use custom logger instead, anywhere on the web page
 - **[Log levels](#logger-initialization)** to hide less important log messages.
 - **[Show hidden messages programmatically](#showhiddenloglevel--1--0--1--2--3--4--5--none--error--warn--info--verbose--debug--silly)** to print logs hidden due log level.
@@ -178,13 +177,6 @@ If any other value is supplied to the constructor, a default value of `none` is 
 - `message` - The silly log message
 - `...rest` - Any additional arguments to be passed onto `console.log`
 
-#### `image(logLevel: string | number, url: string)`
-
-##### Parameters
-
-- `logLevel` - 0 | 1 | 2 | 3 | 4 | 5 | 'error' | 'warn' | 'info' | 'verbose' | 'debug' 
-- `url` - URL for the image or GIF
-
 #### `getLogLevel(): number`
 
 Returns the logger instance's log level in numeric form;
@@ -237,9 +229,12 @@ console.log("log message"); // will be same as logger.debug('console', 'log mess
 
 ## Changelog
 
+### v1.5.0
+- Deprecate `image()` method. Will be removed in next major release. Logging images is no longer supported by Chromme.
+
 ### v1.4.0
 
-- [Added `image()` method](#imageloglevel-string--number-url-string)
+- Added `image()` method
 ### v1.2.0
 
 - [Added `readConsole()` method](#readconsole)
